@@ -1,0 +1,15 @@
+---
+const {bgColor, bgColorHover} = Astro.props;
+---
+
+<button class=`flex items-center gap-4 px-5 py-2 rounded-full border border-[#333333] ${bgColor} ${bgColorHover}`>
+    <p class="font-klee font-semibold">
+        <slot />
+    </p>
+    <svg width="20" height="22" xmlns="http://www.w3.org/2000/svg">
+        <!-- 大きな円 -->
+        <circle cx="10" cy="12" r="9" stroke="black" stroke-width="0.5" fill="none" />
+        <!-- 小さな点 -->
+        <circle cx="10" cy="12" r="1" fill="black" />
+    </svg>
+</button>

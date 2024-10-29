@@ -1,0 +1,13 @@
+---
+const {date, title, isNew, thumbnailUrl} = Astro.props;
+---
+<div>
+    <p class=`${isNew ? 'block' : 'hidden'} text-sm font-klee text-center text-green-600`>New Post!!</p>
+    <p class="text-center font-klee text-2xl font-semibold mb-[2px]">{date}</p>
+    <div class="w-full mx-auto">
+        <img src={thumbnailUrl} alt="" class="rounded-t-2xl">
+        <div class="bg-white px-1 py-1 rounded-b-2xl">
+            <p class="text-sm font-klee font-semibold line-clamp-2">{title}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+---
+import RankInCard from "../elements/RankInCard.astro";
+import TagInCard from "../elements/TagInCard.astro";
+
+const {name, age, rank, rankBgColor, price, tagList} = Astro.props;
+---
+
+<div class="w-[clamp(150px,calc(78px+22.5vw),220px)] px-2 py-2 border-[1px] shadow-xl">
+    <img src="https://placehold.jp/900x1200.png" alt="cast-photo" class="w-full mb-2 mx-auto">
+    <h3 class="font-klee font-semibold mb-1">{name}({age})</h3>
+    <div class="font-klee flex items-center gap-1 mb-2">
+        <RankInCard class={rankBgColor}>{rank}</RankInCard>
+        <p class="text-xs sp-md:text-sm">{price}/時間</p>
+    </div>
+    <ul class="flex flex-wrap font-klee font-semibold gap-x-1 gap-y-[2px]">
+        {tagList.map((tag) => <li><TagInCard>{tag}</TagInCard></li>)}
+    </ul>
+</div>

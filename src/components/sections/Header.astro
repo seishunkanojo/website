@@ -1,0 +1,21 @@
+---
+import HeaderButton from "../elements/HeaderButton.astro";
+---
+
+<header class="fixed top-0 left-0 right-0 z-30 px-2 py-3 w-full bg-white/90">
+    <div class="flex flex-col items-center gap-1 break:gap-[8px]">
+        <div class="">
+            <img src="/assets/img/logo.png" alt="logo" class="h-8">
+        </div>
+        <nav>
+            <ul class="flex gap-[clamp(12px,calc(2.4000000000000004px+3vw),24px)] items-center justify-between text-sm sp-md:text-base font-klee font-semibold">
+                <li class="">利用方法</li>
+                <li class="">お知らせ</li>
+                <li class="">求人募集</li>
+                <HeaderButton>彼女一覧</HeaderButton>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
