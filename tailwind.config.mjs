@@ -11,12 +11,15 @@ export default {
 			colors:{
 				"cat-pink": "#c03a7d",
 				"moon-blue": "#064072",
+				"green-blue-ai": "#267180",
+				"gray-ai": "#2c363d",
+				"white-gray": "#deece7",
+				"pink-ai": "#fa938c"
 			},
 		},
 		fontFamily: {
 			klee: ["Klee One", "cursive"],
-			notoJP: ["Noto Sans JP","sans-serif"],
-			kaiseiDecol: ["Kaisei Decol", "serif"],
+			shippori: ["Shippori Mincho B1","serif"],
 		},
 		container:{
 			center: true,
