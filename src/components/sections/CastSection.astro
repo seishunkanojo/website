@@ -1,0 +1,32 @@
+---
+import CastCard from '../blocks/CastCard.astro';
+import Heading from '../elements/Heading.astro';
+import Button from '../elements/Button.astro';
+
+import { fetchCasts } from '../../lib/fetchCasts';
+const {casts} = await fetchCasts();
+---
+
+<section class="py-10 px-4">
+    <!-- キャストが増えたら"おすすめ彼女"に変更する -->
+    <Heading heading="Cast List" subtitle="彼女一覧"></Heading>
+
+    <!-- grid表示。一番画面幅が小さいときは2列。一番広いときは4列。 -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 md:mt-6 lg:grid-cols-4 lg:mt-10 gap-6 max-w-[1400px] mx-auto mb-12">
+        {casts.map((cast) => (
+            <a href={`/cast/${cast.slug}`}>
+                <CastCard
+                    name={cast.fullName}
+                    age={cast.age}
+                    price={cast.price}
+                    profileImage={cast.thumbnail.src}
+                    tagList={cast.tagList.map(item => item.tag)}
+                />
+            </a>
+        ))}
+    </div>
+
+    <div class="flex justify-center">
+        <a href="/cast"><Button>彼女一覧へ</Button></a>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { newtClient } from '../lib/newt';
+
+const response = await newtClient.getContents({
+    appUid: "service",
+    modelUid: "service",
+    query: {
+        slug: "legal_notice"
+    }
+});
+const legal_notice = response.items[0];
+
+---
+
+<Layout>
+    <div class="pt-20 md:pt-24 mb-32 max-w-[700px] mx-auto">
+        <article>
+            <!-- HTMLコンテンツ -->
+            <div class="prose md:prose-lg" set:html={legal_notice["content"]}></div>
+        </article>
+    </div>
+</Layout>
+
+<style is:global>
+    /* HTMLコンテンツのスタイル */
+    .prose img {
+        display: block;
+        border-radius: 0.5rem;
+        width: 100%;
+        max-width: 500px;
+        max-height: 400px;
+        height: auto;
+    }
+
+    .prose {
+        color: #333;
+        line-height: 1.6;
+    }
+</style>

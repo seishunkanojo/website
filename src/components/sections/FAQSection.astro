@@ -1,0 +1,95 @@
+---
+import Button from "../elements/Button.astro";
+import Heading from "../elements/Heading.astro";
+import { newtClient } from '../../lib/newt';
+
+const response = await newtClient.getContents({
+    appUid: "faq",
+    modelUid: "faq",
+});
+
+const faq = response.items[0];
+const faqList = faq["faq"];
+
+---
+
+<div class="bg-white">
+    <section class="px-4 py-10 mx-auto sp-lg:px-6 break:py-12">
+        <Heading heading="FAQ" subtitle="よくある質問"></Heading>
+        <div class="max-w-[1000px] mx-auto mb-6 sp-lg:mb-8 break:mb-10">
+            {faqList.map((faq) => (
+                <div class="faq-item bg-gray-50 px-4 py-3 rounded-2xl text-[#333333] mb-3 shadow-sm hover:shadow-md transition duration-200">
+                    <button
+                        type="button"
+                        class="faq-button w-full flex justify-between items-center text-left font-semibold text-lg focus:outline-none"
+                    >
+                        {/* 質問を複数行対応 */}
+                        <span>
+                            {faq.question.split("\n").map((line) => (
+                                <span>
+                                    {line}
+                                    <br />
+                                </span>
+                            ))}
+                        </span>
+                        <i class="faq-icon fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div
+                        class="faq-answer mt-2 overflow-hidden max-h-0 transition-[max-height] duration-300"
+                    >
+                        {/* 回答を複数行対応 */}
+                        {faq.answer.split("\n").map((line) => (
+                            <p class="text-lg text-gray-700">
+                                {line}
+                                <br />
+                            </p>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+        <div class="flex justify-center">
+            <a href="/usage_guide"><Button>利用方法へ</Button></a>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+            const button = item.querySelector(".faq-button");
+            const answer = item.querySelector(".faq-answer");
+            const icon = item.querySelector(".faq-icon");
+
+            if (!button || !answer || !icon) return;
+
+            const answerElement = answer as HTMLElement;
+
+            button.addEventListener("click", () => {
+                const isOpen = answerElement.style.maxHeight && answerElement.style.maxHeight !== "0px";
+
+                // 他のアコーディオンを閉じる
+                faqItems.forEach((el) => {
+                    const otherAnswer = el.querySelector(".faq-answer") as HTMLElement;
+                    const otherIcon = el.querySelector(".faq-icon");
+                    if (otherAnswer && otherIcon) {
+                        otherAnswer.style.maxHeight = "0px";
+                        otherIcon.classList.remove("rotate-180");
+                    }
+                });
+
+                // 開閉の切り替え
+                if (!isOpen) {
+                    answerElement.style.maxHeight = `${answerElement.scrollHeight}px`;
+                    icon.classList.add("rotate-180");
+                } else {
+                    answerElement.style.maxHeight = "0px";
+                    icon.classList.remove("rotate-180");
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { fetchArticles } from "../../lib/fetchArticle";
+import NewsCard from "../../components/blocks/NewsCard.astro";
+
+const { articles } =  await fetchArticles();
+console.log(articles);
+---
+
+<Layout>
+    <div class="pt-20 px-4 md:pt-24 mb-12">
+        <h1 class="text-center font-klee text-3xl md:text-4xl mb-8 md:mb-12">記事一覧</h1>
+        <div class="
+                grid grid-cols-2 gap-6 max-w-[1400px] mx-auto mb-8
+                sm:grid-cols-3
+                lg:grid-cols-4
+                xl:grid-cols-6 xl:gap-8
+            ">
+            {articles.map((article) => (
+                <a href={`/news/${article.slug}`}>
+                    <NewsCard
+                        date={article["_sys"]["raw"]["publishedAt"]}
+                        title={article.title}
+                        thumbnailUrl={article.coverImage.src}
+                    />
+                </a>
+            ))}
+    </div>
+</Layout>

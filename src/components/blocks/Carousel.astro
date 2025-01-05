@@ -1,0 +1,89 @@
+---
+const { images } = Astro.props;
+
+//このコンポーネントを使った場所にmain-imageというIDを持つimg要素があれば、そのsrcを更新する。
+---
+
+<!-- Slider main container -->
+<div class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        {images.map((image) => (
+            <div class="swiper-slide">
+                <img src={image} alt="">
+            </div>
+        ))}
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+
+<style>
+    .swiper-slide > img {
+        transition: opacity 1.0s ease;
+    }
+
+    .swiper-slide:not(.swiper-slide-fully-visible) > img {
+        pointer-events: none;
+        opacity: 0.3;
+        transition: opacity 1.0s ease;
+    }
+</style>
+
+<script>
+    import Swiper from "swiper/bundle";
+    import "swiper/css/bundle";
+
+    const swiper = new Swiper(".swiper", {
+        slidesPerView: 5,
+        breakpoints: {
+            640: {
+                slidesPerView: 5,
+            },
+            1024: {
+                slidesPerView: 6,
+            },
+            1280: {
+                slidesPerView: 7,
+            },
+        },
+        watchSlidesProgress: true,
+        spaceBetween: 16,
+        grabCursor: true,
+        centeredSlides: true,
+        loop: true,
+        loopAdditionalSlides: 1,
+        speed: 1500,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        slideToClickedSlide: true,
+        on: {
+            slideChangeTransitionStart: () => {
+                const activeSlide = document.querySelector(".swiper-slide-active img");
+                const mainImage = document.getElementById("main-image");
+                if (activeSlide && mainImage) {
+                    const src = activeSlide.getAttribute("src");
+                    const alt = activeSlide.getAttribute("alt") || "Main Image";
+
+                    // メイン画像を更新
+                    mainImage.setAttribute("src", src);
+                    mainImage.setAttribute("alt", alt);
+                }
+            },
+        },
+    });
+</script>

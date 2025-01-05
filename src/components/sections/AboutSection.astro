@@ -1,0 +1,28 @@
+---
+import Heading from "../elements/Heading.astro";
+import sea_about from "../../assets/img/sea.jpg";
+import vertical_summer from "../../assets/img/vertical_summer.jpg";
+
+---
+
+<!-- <section class="py-10 px-4" style={`background-image: url(${sea.src}); background-size: cover; background-position: center;`}></section> -->
+
+<section class="lg:py-2 xl:py-6 2xl:py-8 lg:bg-sky-100">
+    <div class="py-4 px-10
+                md:py-8
+                lg:rounded-[200px] lg:max-w-[1400px] lg:mx-auto
+    " style={`background-image: url(${sea_about.src}); background-size: cover; background-position: center 75%; filter: brightness(1.06);`}>
+        <Heading heading="About" subtitle="青春彼女について"></Heading>
+        <div class="flex justify-center gap-6 items-center lg:gap-10 xl:gap-14 2xl:gap-20">
+            <div class="font-klee mt-1">
+                <p class="mb-2 lg:mb-3 lg:text-lg xl:text-xl"><strong class="font-bold text-blue-900">青春彼女</strong>は素敵な女性と<strong class="text-red-600">デート</strong>ができるサービスです。</p>
+                <p class="mb-2 lg:mb-3 lg:text-lg xl:text-xl">女性がリードするので、何の準備もいりません。</p>
+                <p class="lg:mb-3 lg:text-lg xl:text-xl">ぜひ、お気軽にご利用ください。</p>
+            </div>
+            <img class="w-40 rounded-3xl md:w-44 lg:w-48 xl:w-52 2xl:w-56" src={vertical_summer.src} alt="">
+        </div>
+    </div>
+
+
+
+</section>

@@ -1,0 +1,75 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { fetchArticles } from "../../lib/fetchArticle";
+
+export async function getStaticPaths(){
+    const {articles} = await fetchArticles();
+    return articles.map((article) => {
+        return{
+            params: {slug: article.slug},
+            props: {article: article}
+        }
+    })
+}
+
+const {article} = Astro.props;
+console.log(article);
+
+
+// 日付をフォーマットする関数
+function formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString();
+    const day = date.getDate().toString();
+    return `${year}年${month}月${day}日`;
+}
+
+// フォーマット済みの日付
+const formattedDate = formatDate(article["_sys"]["raw"]["publishedAt"]);
+---
+
+<Layout>
+    <div class="pt-20 md:pt-24 mb-32 max-w-[700px] mx-auto">
+        <article>
+            <!-- サムネイル画像 -->
+            <div class="aspect-w-16 aspect-h-9 mb-12">
+                <img src={article.coverImage.src} alt="サムネイル画像" class="mx-auto object-cover">
+            </div>
+
+            <div class="mx-4">
+                <!-- タイトル -->
+                <h1 class="text-4xl font-bold font-klee mb-4">{article.title}</h1>
+    
+                <!-- 日付表示 -->
+                <p class="text-gray-500 text-sm mb-8">{formattedDate}</p>
+    
+                <!-- Markdown スタイル -->
+                <div class="prose md:prose-lg" set:html={article.body}></div>
+            </div>
+            
+        </article>
+    </div>
+</Layout>
+
+<style is:global>
+    /* Markdown コンテンツのスタイル */
+    .prose img {
+        display: block;
+        border-radius: 0.5rem;
+        width: 100%;
+        max-width: 500px;
+        max-height: 400px;
+        height: auto;
+    }
+
+    .prose {
+        color: #333;
+        line-height: 1.6;
+    }
+
+    /* 日付のスタイル */
+    p.text-gray-500 {
+        font-style: italic;
+    }
+</style>

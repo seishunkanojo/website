@@ -1,0 +1,177 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Carousel from '../../components/blocks/Carousel.astro';
+import { fetchCasts } from "../../lib/fetchCasts";
+
+export async function getStaticPaths(){
+    const {casts} = await fetchCasts();
+    return casts.map((cast) => {
+        return{
+            params: {slug: cast.slug},
+            props: {cast: cast}
+        }
+    })
+}
+
+const {cast} = Astro.props;
+const tagList = cast.tagList.map(item => item.tag);
+
+---
+<Layout>
+    <div class="pt-14 md:pt-16 max-w-[1400px] mx-auto">
+        <!-- キャスト名 -->
+        <div class="text-center mt-2 mb-6 md:mb-10">
+            <h1 class="text-[28px] text-center font-klee font-bold tracking-wider relative inline-block md:text-3xl">
+                {cast.fullName}
+                <span 
+                    class="block h-[2px] bg-gradient-to-l from-yellow-300 via-green-400 to-blue-400 mt-2 mx-auto w-full rounded-full"></span>
+            </h1>
+        </div>
+
+        <!-- メイン画像 -->
+        <img id="main-image" src={cast.thumbnail.src} alt={`${cast.fullName}の写真`} class="rounded-xl mx-auto mb-8 shadow-lg max-w-[500px] h-auto">
+
+        <!-- カルーセル -->
+        <Carousel images={cast.photo_library.map(item => item.src)} />
+
+        <!-- タブ切り替え -->
+        <div class="mt-8 mb-12">
+            <div id="tabs" class="flex justify-center gap-4 mb-6">
+                <!-- すべて同じクラスに統一 -->
+                <button
+                    data-tab="profile"
+                    class="tab-button px-6 py-2 font-medium rounded border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 hover:border-gray-400"
+                >
+                    プロフィール
+                </button>
+                <button
+                    data-tab="questions"
+                    class="tab-button px-6 py-2 font-medium rounded border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 hover:border-gray-400"
+                >
+                    質問コーナー
+                </button>
+                <button
+                    data-tab="video"
+                    class="tab-button px-6 py-2 font-medium rounded border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 hover:border-gray-400"
+                >
+                    動画
+                </button>
+            </div>
+
+            <!-- タブコンテンツ -->
+            <div id="tab-content">
+                <div data-content="profile" class="tab-content">
+                    <div class="bg-white shadow-md p-6 rounded-lg">
+                        <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">プロフィール</h2>
+                        <ul class="text-gray-600 space-y-6"> <!-- 上部に薄い線を引く -->
+                            <li class="pt-3 border-b border-gray-300"> <!-- 各項目の下に薄い線を引く -->
+                                <strong class="text-blue-500 text-lg">年齢:</strong> 
+                                <span class="text-gray-800 font-semibold">{cast.age}歳</span>
+                            </li>
+                            <li class="pt-3 border-b border-gray-300">
+                                <strong class="text-blue-500 text-lg">身長:</strong> 
+                                <span class="text-gray-800 font-semibold">{cast.height}cm</span>
+                            </li>
+                            <li class="pt-3 border-b border-gray-300">
+                                <strong class="text-blue-500 text-lg">タグ:</strong> 
+                                <span class="text-gray-800 font-semibold">{tagList.map(tag => `#${tag}`).join(' ')}</span>
+                            </li>
+                            <li class="pt-3 border-b border-gray-300">
+                                <strong class="text-blue-500 text-lg">趣味:</strong> 
+                                <span class="text-gray-800 font-semibold">{cast.hobby}</span>
+                            </li>
+                            <li class="pt-3 border-b border-gray-300">
+                                <strong class="text-blue-500 text-lg">好きな食べ物:</strong> 
+                                <span class="text-gray-800 font-semibold">{cast.favorite_food}</span>
+                            </li>
+                            <li class="pt-3">
+                                <strong class="text-blue-500 text-lg">性格:</strong> 
+                                <span class="text-gray-800 font-semibold">{cast.personality}</span>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                
+                <div data-content="questions" class="tab-content hidden">
+                    <div class="bg-white shadow-md p-6 rounded-lg">
+                        <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">質問コーナー</h2>
+                        <ul class="space-y-6">
+                            {cast.questions.map((item) => (
+                                <li class="border-b pb-2">
+                                    <p class="font-medium text-gray-800">{item.question}</p>
+                                    <p class="text-gray-800 mt-1">{item.answer}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                <div data-content="video" class="tab-content hidden">
+                    <div class="bg-white shadow-md p-6 rounded-lg">
+                        <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">動画</h2>
+                        {cast.youtube?.html ? (
+                            <div id="youtube-container" set:html={cast.youtube.html}></div>
+                        ) : (
+                            <p class="text-gray-500 text-center">現在、動画はありません。</p>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- タブ切り替えスクリプト -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabs = document.querySelectorAll(".tab-button");
+            const contents = document.querySelectorAll(".tab-content");
+
+            // 初期表示設定：最初のタブのみアクティブ
+            tabs.forEach((tab, index) => {
+                if (index === 0) {
+                    tab.classList.remove("bg-gray-100", "text-gray-700");
+                    tab.classList.add("bg-blue-400", "text-white", "hover:bg-blue-500");
+                    contents[index].classList.remove("hidden");
+                } else {
+                    contents[index].classList.add("hidden");
+                }
+            });
+
+            // タブクリック時の処理
+            tabs.forEach((tab) => {
+                tab.addEventListener("click", () => {
+                    const target = tab.getAttribute("data-tab");
+
+                    // 全タブを非アクティブに
+                    tabs.forEach((btn, btnIndex) => {
+                        btn.classList.remove("bg-blue-400", "text-white", "hover:bg-blue-500");
+                        btn.classList.add("bg-gray-100", "text-gray-700", "hover:bg-gray-200");
+                        contents[btnIndex].classList.add("hidden");
+                    });
+
+                    // クリックされたタブをアクティブに
+                    tab.classList.remove("bg-gray-100", "text-gray-700", "hover:bg-gray-200");
+                    tab.classList.add("bg-blue-400", "text-white", "hover:bg-blue-500");
+
+                    // 対応するコンテンツ表示
+                    const activeContent = document.querySelector(`[data-content="${target}"]`);
+                    if (activeContent) {
+                        activeContent.classList.remove("hidden");
+                    }
+                });
+            });
+
+            // iframeとそのコンテナにクラスを追加
+            const iframeContainer = document.querySelector("#youtube-container div");
+            if (iframeContainer) {
+                iframeContainer.classList.add("mx-auto", "rounded-lg");
+            }
+
+            const iframe = iframeContainer.querySelector("iframe");
+            if (iframe) {
+                iframe.classList.add("mx-auto", "rounded-lg");
+            }
+        });
+    </script>
+</Layout>

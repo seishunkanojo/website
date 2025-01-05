@@ -1,0 +1,97 @@
+---
+// 4つの画像をインポート
+import spring from "../../assets/img/spring.jpg";
+import summer from "../../assets/img/summer.jpeg";
+import summer_night from "../../assets/img/summer_night.jpg";
+import winter_night from "../../assets/img/winter_night.jpg";
+
+// 画像リストを作成
+const images = [summer.src, summer_night.src, spring.src, winter_night.src];
+---
+
+<div class="relative w-full overflow-hidden max-h-screen" style="aspect-ratio: 16 / 9;">
+  <!-- スライドショー -->
+  <div id="slideshow" class="absolute inset-0 w-screen mt-14 md:mt-0">
+    {images.map((src, index) => (
+      <img
+        src={src}
+        alt={`image-${index}`}
+        class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+          index === 0 ? "opacity-100" : "opacity-0"
+        }`}
+        style={`z-index: ${images.length - index}`}
+      />
+    ))}
+  </div>
+
+  <!-- テキスト -->
+  <div class="absolute w-full z-10 flex items-center justify-start px-8 md:px-16 lg:px-20 xl:px-24 2xl:px-28" style="top: 50%;">
+    <h1 class="text-black text-xl font-klee font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl leading-tight transform -translate-y-1/2 bg-white/60 p-2 rounded-md">
+      <strong class="text-blue-600">青春</strong>を、もう一度
+    </h1>
+  </div>
+
+  <!-- ドットインジケーター -->
+  <div id="dots" class="absolute bottom-4 w-full flex justify-center gap-2 z-20">
+    {images.map((_, index) => (
+      <div
+        data-index={index}
+        class="w-4 h-4 bg-white rounded-full cursor-pointer opacity-50 transition-opacity duration-300"
+      ></div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const images = document.querySelectorAll("#slideshow img");
+  const dots = document.querySelectorAll("#dots div");
+  let currentIndex = 0;
+  let interval;
+
+  function updateSlides(index) {
+    // 現在のスライドとドットの状態をリセット
+    images[currentIndex].classList.remove("opacity-100");
+    images[currentIndex].classList.add("opacity-0");
+    dots[currentIndex].classList.remove("opacity-100");
+    dots[currentIndex].classList.add("opacity-50");
+
+    // 新しいスライドとドットを設定
+    currentIndex = index;
+    images[currentIndex].classList.remove("opacity-0");
+    images[currentIndex].classList.add("opacity-100");
+    dots[currentIndex].classList.remove("opacity-50");
+    dots[currentIndex].classList.add("opacity-100");
+  }
+
+  function startAutoSlide() {
+    interval = setInterval(() => {
+      const nextIndex = (currentIndex + 1) % images.length;
+      updateSlides(nextIndex);
+    }, 3000); // 3秒ごとに切り替え
+  }
+
+  function addDotClickHandlers() {
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        clearInterval(interval); // 自動切り替えを一時停止
+        updateSlides(index); // クリックされたドットに対応するスライドを表示
+        startAutoSlide(); // 自動切り替えを再開
+      });
+    });
+  }
+
+  // 初期化
+  updateSlides(0);
+  addDotClickHandlers();
+  startAutoSlide();
+</script>
+
+<style>
+  #slideshow img {
+    transition: opacity 1s ease-in-out;
+  }
+  #dots div.opacity-100 {
+    opacity: 1;
+    background-color: #fff;
+  }
+</style>

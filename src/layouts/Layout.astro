@@ -1,5 +1,6 @@
 ---
-import Header from "../components/sections/Header.astro";
+import Header from "../components/blocks/Header.astro";
+import Footer from "../components/blocks/Footer.astro";
 ---
 
 <!DOCTYPE html>
@@ -8,14 +9,24 @@ import Header from "../components/sections/Header.astro";
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Shippori+Mincho+B1:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/3c78d3fab5.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 </head>
-<body>
+<body class="flex flex-col justify-between min-h-screen">
 	<Header></Header>
-	<slot />
+	<main class="flex-grow">
+		<slot />
+	</main>
+	<Footer></Footer>
 </body>
 </html>
