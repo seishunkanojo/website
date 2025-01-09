@@ -32,7 +32,7 @@ const tagList = cast.tagList.map(item => item.tag);
         <img id="main-image" src={cast.thumbnail.src} alt={`${cast.fullName}の写真`} class="rounded-xl mx-auto mb-8 shadow-lg max-w-[500px] h-auto">
 
         <!-- カルーセル -->
-        <Carousel images={cast.photo_library.map(item => item.src)} />
+        <Carousel images={cast.photoLibrary.map(item => item.src)} />
 
         <!-- タブ切り替え -->
         <div class="mt-8 mb-12">
@@ -82,7 +82,7 @@ const tagList = cast.tagList.map(item => item.tag);
                             </li>
                             <li class="pt-3 border-b border-gray-300">
                                 <strong class="text-blue-500 text-lg">好きな食べ物:</strong> 
-                                <span class="text-gray-800 font-semibold">{cast.favorite_food}</span>
+                                <span class="text-gray-800 font-semibold">{cast.favoriteFood}</span>
                             </li>
                             <li class="pt-3">
                                 <strong class="text-blue-500 text-lg">性格:</strong> 
