@@ -1,39 +1,86 @@
 ---
+import Button from "../components/elements/Button.astro";
 import Layout from "../layouts/Layout.astro";
-import { newtClient } from '../lib/newt';
 
-const response = await newtClient.getContents({
-    appUid: "service",
-    modelUid: "service",
-    query: {
-        slug: "careers"
-    }
-});
-const careers = response.items[0];
+const faqs = [
+  { question: "時給はどのくらいですか？", answer: "研修中は時給3000円からスタート。スキルに応じてアップします！" },
+  { question: "お客様とデート以外の業務はありますか？", answer: "ありません。性的サービスやセクハラ行為も厳禁です。" },
+  { question: "場所や時間の調整は可能ですか？", answer: "お客様と話し合って自由にスケジュールを決められます。" },
+];
+
+const requirements = [
+  { title: "時給", content: "研修中から時給3000円以上。スキルや経験でさらにアップ可能！" },
+  { title: "交通費", content: "交通費は全額運営負担です。" },
+  { title: "食事代など", content: "デート中の費用（食事代・施設代など）はお客様が負担します。" },
+  { title: "ノルマ", content: "一切ありません。" },
+];
 ---
 
 <Layout>
-    <div class="pt-20 md:pt-24 mb-32 max-w-[700px] mx-auto">
-        <article>
-            <!-- HTMLコンテンツ -->
-            <div class="prose md:prose-lg" set:html={careers["content"]}></div>
-        </article>
+<section class="bg-gray-100 py-10 px-4">
+  <!-- サムネイル画像 -->
+  <div class="max-w-4xl mx-auto">
+    <img src="/dummy-thumbnail.jpg" alt="採用ページサムネイル" class="w-full rounded-lg shadow-lg" />
+  </div>
+
+  <!-- キャッチコピー -->
+  <div class="text-center mt-8">
+    <h1 class="text-4xl font-bold text-gray-800">空いた時間に、自由に楽しくデートするお仕事。</h1>
+    <p class="text-gray-600 mt-4">Zoomや公式LINEでいつでも相談可能！</p>
+  </div>
+
+  <!-- Spir埋め込み -->
+  <div class="mt-12 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-semibold text-gray-800">Zoomでいつでも代表に相談可能！</h2>
+    <p class="text-gray-600 mt-2">気になることはお気軽にご相談ください。</p>
+    <div class="mt-4">
+      <!-- Spirの埋め込みエリア -->
+      <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+        <p class="text-gray-500">Spir埋め込みコードをここに挿入</p>
+      </div>
     </div>
+  </div>
+
+  <!-- LINEの案内 -->
+  <div class="mt-12 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-semibold text-gray-800">公式LINEでも回答可能！</h2>
+    <p class="text-gray-600 mt-2">QRコードをスキャンして、LINEで質問を送信してください。</p>
+    <div class="mt-4 flex items-center justify-center">
+      <img src="/dummy-qrcode.jpg" alt="公式LINE QRコード" class="w-40 h-40 rounded-lg shadow-md" />
+    </div>
+  </div>
+
+  <!-- FAQセクション -->
+  <div class="mt-12 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-semibold text-gray-800">よくある質問</h2>
+    <ul class="mt-4 space-y-4">
+      {faqs.map((faq) => (
+        <li class="border-b pb-4">
+          <h3 class="font-semibold text-gray-800">{faq.question}</h3>
+          <p class="text-gray-600 mt-2">{faq.answer}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- 募集要項セクション -->
+  <div class="mt-12 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-semibold text-gray-800">募集要項</h2>
+    <ul class="mt-4 space-y-4">
+      {requirements.map((req) => (
+        <li class="border-b pb-4">
+          <h3 class="font-semibold text-gray-800">{req.title}</h3>
+          <p class="text-gray-600 mt-2">{req.content}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- 応募ボタン -->
+  <div class="mt-12 text-center">
+    <Button href="https://forms.gle/your-google-form-link" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600">
+      応募する
+    </Button>
+  </div>
+</section>
 </Layout>
-
-<style is:global>
-    /* HTMLコンテンツのスタイル */
-    .prose img {
-        display: block;
-        border-radius: 0.5rem;
-        width: 100%;
-        max-width: 500px;
-        max-height: 400px;
-        height: auto;
-    }
-
-    .prose {
-        color: #333;
-        line-height: 1.6;
-    }
-</style>

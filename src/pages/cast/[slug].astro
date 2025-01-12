@@ -29,7 +29,7 @@ const tagList = cast.tagList.map(item => item.tag);
         </div>
 
         <!-- メイン画像 -->
-        <img id="main-image" src={cast.thumbnail.src} alt={`${cast.fullName}の写真`} class="rounded-xl mx-auto mb-8 shadow-lg max-w-[500px] h-auto">
+        <img id="main-image" src={cast.thumbnail.src} alt={`${cast.fullName}の写真`} class="rounded-xl mx-auto mb-8 shadow-lg sm:max-w-[500px] h-auto aspect-[1/1] object-cover sm:aspect-auto">
 
         <!-- カルーセル -->
         <Carousel images={cast.photoLibrary.map(item => item.src)} />

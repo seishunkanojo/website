@@ -16,7 +16,7 @@ const faqList = faq["faq"];
 <div class="bg-white">
     <section class="px-4 py-10 mx-auto sp-lg:px-6 break:py-12">
         <Heading heading="FAQ" subtitle="よくある質問"></Heading>
-        <div class="max-w-[1000px] mx-auto mb-6 sp-lg:mb-8 break:mb-10">
+        <div class="max-w-[1000px] mx-auto mb-12">
             {faqList.map((faq) => (
                 <div class="faq-item bg-gray-50 px-4 py-3 rounded-2xl text-[#333333] mb-3 shadow-sm hover:shadow-md transition duration-200">
                     <button
@@ -35,11 +35,11 @@ const faqList = faq["faq"];
                         <i class="faq-icon fa-solid fa-chevron-down transform transition-transform duration-300"></i>
                     </button>
                     <div
-                        class="faq-answer mt-2 overflow-hidden max-h-0 transition-[max-height] duration-300"
+                        class="faq-answer mt-3 overflow-hidden max-h-0 transition-[max-height] duration-300"
                     >
                         {/* 回答を複数行対応 */}
                         {faq.answer.split("\n").map((line) => (
-                            <p class="text-lg text-gray-700">
+                            <p class="text-base md:text-lg text-gray-700">
                                 {line}
                                 <br />
                             </p>
