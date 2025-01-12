@@ -1,40 +1,293 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { newtClient } from '../lib/newt';
-
-const response = await newtClient.getContents({
-    appUid: "service",
-    modelUid: "service",
-    query: {
-        slug: "usage_guide"
-    }
-});
-const usage_guide = response.items[0];
-
+import Layout from "../layouts/Layout.astro"
 ---
 
-<Layout title="利用料金 | 青春彼女_都内No.1の彼女レンタルサービス" description="当サービスのご利用料金をご案内します。東京で過ごす特別な時間のために、明確でわかりやすい料金体系をご用意。安心の料金設定で、あなたの理想のデートをサポートします。キャスト募集も行なっておりますので、お気軽にご応募ください！">
-    <div class="pt-20 md:pt-24 mb-32 max-w-[700px] mx-auto">
-        <article>
-            <!-- HTMLコンテンツ -->
-            <div class="prose md:prose-lg" set:html={usage_guide["content"]}></div>
-        </article>
-    </div>
+<Layout title="ご利用料金 | 青春彼女_都内No.1の彼女レンタルサービス" description="当サービスのご利用料金をご案内します。東京で過ごす特別な時間のために、明確でわかりやすい料金体系をご用意。安心の料金設定で、あなたの理想のデートをサポートします。キャスト募集も行なっておりますので、お気軽にご応募ください！">
+    <section class="container mx-auto p-4 mt-16 md:p-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
+            ご利用料金
+        </h1>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">ご利用の流れ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <i class="fas fa-person-dress fa-3x text-red-400 mb-4"></i>
+                    <p class="text-lg font-bold text-gray-700 mb-2">
+                        <a href="/cast" class="text-red-400 underline">彼女一覧</a>から探す
+                    </p>
+                    <p class="text-center">
+                        お気に入りの彼女を見つけてください👀
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <i class="fab fa-line fa-3x text-green-500 mb-4"></i>
+                    <p class="text-lg font-bold text-gray-700 mb-2">
+                        LINEでデートプラン作成
+                    </p>
+                    <p class="text-center">
+                        2人で一緒に素敵なプランを作りましょう！
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <i class="fas fa-heart fa-3x text-red-500 mb-4"></i>
+                    <p class="text-lg font-bold text-gray-700 mb-2">
+                        デートを楽しむ
+                    </p>
+                    <p class="text-center">
+                        素敵な時間をお過ごしください♪
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">利用料金</h2>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                <p class="text-lg text-center mb-6">
+                    <span class="text-gray-700 font-bold text-xl">ご利用料金 = 基本料金 + 出張費</span>
+                    <span class="text-gray-600"> (+ 延長費)</span>
+                </p>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-600 mb-2">基本料金</h3>
+                    <p class="mb-2">
+                        基本料金は各キャストのプロフィールページに記載してあります。
+                    </p>
+                    <p class="bg-yellow-50 border border-yellow-200 p-2 rounded-md">
+                        ※デートは最低<span class="text-red-500 font-bold">2時間</span>利用からでお願いいたします。
+                    </p>
+                    <img
+                        src="https://seishunkanojo.assets.newt.so/v1/6683c4c9-f453-4f5e-ac95-239b29aec117/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%882025-01-12214642.png"
+                        alt="スクリーンショット"
+                        class="mt-4 w-full md:w-2/3 lg:w-1/2 mx-auto"
+                    />
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-600 mb-2">出張費</h3>
+                    <p class="mb-2">
+                        集合場所と解散場所のうち、<span class="text-red-500 font-bold">渋谷駅から遠い方</span>を「出張先」とし、以下の表に基づいて計算します。
+                    </p>
+                    <table class="table-auto w-full border-collapse border border-gray-300">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="border border-gray-300 px-4 py-2">出張先</th>
+                                <th class="border border-gray-300 px-4 py-2">料金</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white">
+                                <td class="border border-gray-300 px-4 py-2">東京23区内</td>
+                                <td class="border border-gray-300 px-4 py-2">2000円</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="border border-gray-300 px-4 py-2">
+                                    東京23区外かつ、渋谷駅から片道1時間未満の場所（舞浜駅、横浜市等含む）
+                                </td>
+                                <td class="border border-gray-300 px-4 py-2">3000円</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border border-gray-300 px-4 py-2">
+                                    渋谷駅から片道1時間以上、1時間30分未満の場所
+                                </td>
+                                <td class="border border-gray-300 px-4 py-2">5000円</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-gray-600 mb-2">延長費</h3>
+                    <p>
+                        キャストとの同意のうえで、デート当日に<span class="text-red-500 font-bold">1時間単位</span>でデートを延長することができます。
+                    </p>
+                    <p class="bg-yellow-50 border border-yellow-200 p-2 rounded-md mt-2">
+                        ただし、延長費用は<span class="text-red-500 font-bold">基本料金+1000円</span>となることをご了承ください。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">料金シミュレーション</h2>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-bold text-gray-600 mb-4">料金計算ツール</h3>
+    
+                <div class="mb-4">
+                    <label for="base-rate" class="block mb-2">基本料金（円/時間）:</label>
+                    <input
+                        type="number"
+                        id="base-rate"
+                        value="6000"
+                        min="0"
+                        class="border border-gray-300 px-3 py-2 rounded w-full"
+                    />
+                    <div id="base-rate-error" class="text-red-500 text-sm mt-1"></div>
+                </div>
+    
+                <div class="mb-4">
+                    <label for="hours" class="block mb-2">利用時間（時間）:</label>
+                    <input
+                        type="number"
+                        id="hours"
+                        value="2"
+                        min="2"
+                        class="border border-gray-300 px-3 py-2 rounded w-full"
+                    />
+                    <div id="hours-error" class="text-red-500 text-sm mt-1"></div>
+                </div>
+    
+                <div class="mb-4">
+                    <label for="extra-hours" class="block mb-2">延長時間（時間）:</label>
+                    <input
+                        type="number"
+                        id="extra-hours"
+                        value="0"
+                        min="0"
+                        class="border border-gray-300 px-3 py-2 rounded w-full"
+                    />
+                    <div id="extra-hours-error" class="text-red-500 text-sm mt-1"></div>
+                </div>
+    
+                <div class="mb-4">
+                    <label for="destination" class="block mb-2">出張先:</label>
+                    <select id="destination" class="border border-gray-300 px-3 py-2 rounded w-full">
+                        <option value="tokyo-23">東京23区内</option>
+                        <option value="tokyo-suburbs">東京23区外（渋谷から1時間未満）</option>
+                        <option value="outside-tokyo">渋谷から1時間以上1時間30分未満</option>
+                    </select>
+                </div>
+    
+                <button
+                    id="calculate-button"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+                >
+                    計算する
+                </button>
+    
+                <div class="mt-6">
+                    <p class="text-lg">
+                        合計料金: <span id="total-price" class="text-xl font-bold text-red-500">0円</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">注意事項</h2>
+            <ul class="list-disc list-inside space-y-4">
+                <li class="bg-gray-50 p-4 rounded-lg shadow">
+                    料金は<span class="text-red-500 font-bold">前払い制</span>となっております。
+                </li>
+                <li class="bg-gray-50 p-4 rounded-lg shadow">
+                    デート中の飲食代、施設利用料等はお客様のご負担となります。
+                </li>
+                <li class="bg-gray-50 p-4 rounded-lg shadow">
+                    キャストへの過度な接触、暴言、その他迷惑行為は禁止です。
+                </li>
+                <li class="bg-gray-50 p-4 rounded-lg shadow">
+                    キャストのプライバシーに関わる質問はご遠慮ください。
+                </li>
+                <li class="bg-gray-50 p-4 rounded-lg shadow">
+                    予約のキャンセルについては、キャンセルポリシーをご確認ください。
+                </li>
+                <li class="bg-gray-50 p-4 rounded-lg shadow">
+                    その他、利用規約に同意の上、サービスをご利用ください。
+                </li>
+            </ul>
+        </section>
+    </section>
+    <script>
+        function calculatePrice() {
+            // 各要素を取得
+            const baseRateInput = document.getElementById("base-rate");
+            const hoursInput = document.getElementById("hours");
+            const extraHoursInput = document.getElementById("extra-hours");
+            const destinationSelect = document.getElementById("destination");
+            const totalPriceSpan = document.getElementById("total-price");
+    
+            // エラーメッセージ要素を取得
+            const baseRateError = document.getElementById("base-rate-error");
+            const hoursError = document.getElementById("hours-error");
+            const extraHoursError = document.getElementById("extra-hours-error");
+    
+            // エラーメッセージをクリア
+            baseRateError.textContent = "";
+            hoursError.textContent = "";
+            extraHoursError.textContent = "";
+    
+            // 型ガードを使用して、入力値を取得
+            let baseRate = 0;
+            if (baseRateInput instanceof HTMLInputElement) {
+                baseRate = parseInt(baseRateInput.value);
+            }
+    
+            let hours = 0;
+            if (hoursInput instanceof HTMLInputElement) {
+                hours = parseInt(hoursInput.value);
+            }
+    
+            let extraHours = 0;
+            if (extraHoursInput instanceof HTMLInputElement) {
+                extraHours = parseInt(extraHoursInput.value);
+            }
+    
+            let destination = "tokyo-23";
+            if (destinationSelect instanceof HTMLSelectElement) {
+                destination = destinationSelect.value;
+            }
+    
+            // バリデーション
+            let isValid = true;
+    
+            if (isNaN(baseRate) || baseRate < 0) {
+                baseRateError.textContent = "基本料金は0以上の数値を入力してください。";
+                isValid = false;
+            }
+    
+            if (isNaN(hours) || hours < 2) {
+                hoursError.textContent = "利用時間は2時間以上で入力してください。";
+                isValid = false;
+            }
+    
+            if (isNaN(extraHours) || extraHours < 0) {
+                extraHoursError.textContent = "延長時間は0以上の数値を入力してください。";
+                isValid = false;
+            }
+    
+            if (!isValid) return;
+    
+            // 出張費を計算
+            let travelCost = 0;
+            switch (destination) {
+                case "tokyo-23":
+                    travelCost = 2000;
+                    break;
+                case "tokyo-suburbs":
+                    travelCost = 3000;
+                    break;
+                case "outside-tokyo":
+                    travelCost = 5000;
+                    break;
+                default:
+                    travelCost = 0;
+            }
+    
+            // 合計料金を計算
+            const basePrice = baseRate * hours;
+            const extraPrice = (baseRate + 1000) * extraHours;
+            const totalPrice = basePrice + travelCost + extraPrice;
+    
+            // 結果を表示
+            totalPriceSpan.textContent = totalPrice.toLocaleString() + "円";
+        }
+    
+        // 計算ボタンにイベントリスナーを設定
+        const calcButton = document.getElementById("calculate-button");
+        if (calcButton) {
+            calcButton.addEventListener("click", calculatePrice);
+        }
+    </script>
+
 </Layout>
-
-<style is:global>
-    /* HTMLコンテンツのスタイル */
-    .prose img {
-        display: block;
-        border-radius: 0.5rem;
-        width: 100%;
-        max-width: 500px;
-        max-height: 400px;
-        height: auto;
-    }
-
-    .prose {
-        color: #333;
-        line-height: 1.6;
-    }
-</style>
