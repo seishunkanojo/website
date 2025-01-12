@@ -29,7 +29,7 @@ function formatDate(dateString: string): string {
 const formattedDate = formatDate(article["_sys"]["raw"]["publishedAt"]);
 ---
 
-<Layout>
+<Layout title={`${article.title} | 青春彼女_都内No.1の彼女レンタルサービス`} description={`${article.title} - 当サービスからのお知らせ詳細ページです。東京でのレンタル彼女サービス「青春彼女」に関する情報をお届けします。特別な時間をより楽しんでいただくために、ぜひご覧ください。`}>
     <div class="pt-20 md:pt-24 mb-32 max-w-[700px] mx-auto">
         <article>
             <!-- サムネイル画像 -->

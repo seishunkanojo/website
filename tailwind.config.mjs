@@ -4,7 +4,6 @@ export default {
 	theme: {
 		fontFamily: {
 			klee: ["Klee One", "cursive"],
-			shippori: ["Shippori Mincho B1","serif"],
 		},
 		container:{
 			center: true,

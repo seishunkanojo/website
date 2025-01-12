@@ -9,9 +9,9 @@ const images = [summer.src, summer_night.src, spring.src, winter_night.src];
 ---
 
 <!-- スライドショーのラッパ -->
-<div class="relative w-full overflow-hidden max-h-screen" style="aspect-ratio: 16 / 9;">
+<div class="relative w-full overflow-hidden max-h-screen mt-14 md:mt-0" style="aspect-ratio: 16 / 9;">
   <!-- スライドショー本体 -->
-  <div id="slideshow" class="absolute inset-0 w-screen mt-14 md:mt-0">
+  <div id="slideshow" class="absolute inset-0 w-screen">
     {images.map((src, index) => (
       <img
         src={src}

@@ -17,7 +17,7 @@ const {cast} = Astro.props;
 const tagList = cast.tagList.map(item => item.tag);
 
 ---
-<Layout>
+<Layout title={`${cast.fullName} | 青春彼女_都内No.1の彼女レンタルサービス`} description=`${cast.fullName}のプロフィール詳細ページです。趣味や特技、デートプランなど、${cast.fullName}との特別な時間をイメージできる情報が満載！東京で過ごす、あなただけの特別なデートを${cast.fullName}と。キャストとして働きたい方も募集中、${cast.fullName}と一緒に働きませんか？`>
     <div class="pt-14 md:pt-16 max-w-[1400px] mx-auto">
         <!-- キャスト名 -->
         <div class="text-center mt-2 mb-6 md:mb-10">
