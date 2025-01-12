@@ -65,6 +65,10 @@ const tagList = cast.tagList.map(item => item.tag);
                         <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">プロフィール</h2>
                         <ul class="text-gray-600 space-y-6"> <!-- 上部に薄い線を引く -->
                             <li class="pt-3 border-b border-gray-300"> <!-- 各項目の下に薄い線を引く -->
+                                <strong class="text-blue-500 text-lg">料金:</strong> 
+                                <span class="text-gray-800 font-semibold">{cast.price}円/時間</span>
+                            </li>
+                            <li class="pt-3 border-b border-gray-300">
                                 <strong class="text-blue-500 text-lg">年齢:</strong> 
                                 <span class="text-gray-800 font-semibold">{cast.age}歳</span>
                             </li>
