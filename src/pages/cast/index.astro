@@ -1,10 +1,35 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import CastSection from "../../components/sections/CastSection.astro";
+import Heading from "../../components/elements/Heading.astro";
+import CastCard from "../../components/blocks/CastCard.astro";
+import Button from "../../components/elements/Button.astro";
+import { fetchCasts } from "../../lib/fetchCasts";
+const {casts} = await fetchCasts();
 ---
 
 <Layout>
     <div class="pt-14 md:pt-16 max-w-[1400px] mx-auto">
-        <CastSection></CastSection>
+        <section class="py-12 px-4">
+            <!-- キャストが増えたら"おすすめ彼女"に変更する -->
+            <Heading heading="Cast List" subtitle="彼女一覧"></Heading>
+        
+            <!-- grid表示。一番画面幅が小さいときは2列。一番広いときは4列。 -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto mb-12">
+                {casts.map((cast) => (
+                    <a href={`/cast/${cast.slug}`}>
+                        <CastCard
+                            name={cast.fullName}
+                            age={cast.age}
+                            price={cast.price}
+                            profileImage={cast.thumbnail.src}
+                            tagList={cast.tagList.map(item => item.tag)}
+                        />
+                    </a>
+                ))}
+            </div>
+            <div class="flex justify-center">
+                <a href="/"><Button>トップページへ</Button></a>
+            </div>
+        </section>
     </div>
 </Layout>
