@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import Button from "../components/elements/Button.astro"
 ---
 
 <Layout title="ご利用料金 | 青春彼女_都内No.1の彼女レンタルサービス" description="当サービスのご利用料金をご案内します。東京で過ごす特別な時間のために、明確でわかりやすい料金体系をご用意。安心の料金設定で、あなたの理想のデートをサポートします。キャスト募集も行なっておりますので、お気軽にご応募ください！">
     <section class="container mx-auto p-4 mt-16 md:p-8">
         <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
-            ご利用料金
+            ご利用方法
         </h1>
 
         <section class="mb-12">
@@ -112,7 +113,7 @@ import Layout from "../layouts/Layout.astro"
         <section class="mb-12">
             <h2 class="text-2xl font-bold text-gray-700 mb-4">料金シミュレーション</h2>
             <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-bold text-gray-600 mb-4">料金計算ツール</h3>
+                <!-- <h3 class="text-lg font-bold text-gray-600 mb-4">料金計算ツール</h3> -->
     
                 <div class="mb-4">
                     <label for="base-rate" class="block mb-2">基本料金（円/時間）:</label>
@@ -197,6 +198,9 @@ import Layout from "../layouts/Layout.astro"
                 </li>
             </ul>
         </section>
+        <div class="flex justify-center mb-12">
+            <a href="/"><Button>トップページへ</Button></a>
+        </div>
     </section>
     <script>
         function calculatePrice() {
