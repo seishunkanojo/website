@@ -1,86 +1,303 @@
 ---
-import Button from "../components/elements/Button.astro";
 import Layout from "../layouts/Layout.astro";
-
-const faqs = [
-  { question: "時給はどのくらいですか？", answer: "研修中は時給3000円からスタート。スキルに応じてアップします！" },
-  { question: "お客様とデート以外の業務はありますか？", answer: "ありません。性的サービスやセクハラ行為も厳禁です。" },
-  { question: "場所や時間の調整は可能ですか？", answer: "お客様と話し合って自由にスケジュールを決められます。" },
-];
-
-const requirements = [
-  { title: "時給", content: "研修中から時給3000円以上。スキルや経験でさらにアップ可能！" },
-  { title: "交通費", content: "交通費は全額運営負担です。" },
-  { title: "食事代など", content: "デート中の費用（食事代・施設代など）はお客様が負担します。" },
-  { title: "ノルマ", content: "一切ありません。" },
-];
+import career_main from "../assets/img/career_main.jpg";
+import career_job from "../assets/img/career_job.jpg";
 ---
 
-<Layout>
-<section class="bg-gray-100 py-10 px-4">
-  <!-- サムネイル画像 -->
-  <div class="max-w-4xl mx-auto">
-    <img src="/dummy-thumbnail.jpg" alt="採用ページサムネイル" class="w-full rounded-lg shadow-lg" />
-  </div>
+<Layout title="求人ページ | 青春彼女_都内No.1の彼女レンタルサービス" description="研修中から時給3000円保証！青春彼女で、あなたの魅力を活かして働きませんか？オプション・延長料金は全てキャストにバック！充実のサポート体制で、未経験でも安心。あなたの理想の働き方を実現しましょう！">
+    <section class="bg-white mt-16">
+        <div class="w-full max-w-screen-lg mx-auto relative">
+            <div class="aspect-w-16 aspect-h-9">
+                <img src={career_main.src} alt="スキマ時間に輝く、新しい私へ。" class="w-full h-full object-cover" />
+            </div>
+            <div
+                class="absolute w-full z-10 flex items-center justify-start px-4 sm:px-8 md:px-16 lg:px-12 xl:px-20 2xl:px-16"
+                style="top: 50%;"
+            >
+                <h1
+                    class="text-black text-base font-klee font-bold sm:text-xl sm:leading-relaxed md:text-3xl md:leading-tight lg:text-4xl lg:leading-normal xl:text-4xl xl:leading-normal 2xl:text-5xl 2xl:leading-normal transform -translate-y-1/2 bg-white/60 py-2 px-3 sm:py-2 sm:px-3 md:py-2 md:px-3 lg:py-3 lg:px-4 xl:py-4 xl:px-5 rounded-md"
+                >
+                    スキマ時間に<span class="text-red-500">輝く</span>、<br class="hidden md:block" />新しい私へ。
+                </h1>
+            </div>
+        </div>
 
-  <!-- キャッチコピー -->
-  <div class="text-center mt-8">
-    <h1 class="text-4xl font-bold text-gray-800">空いた時間に、自由に楽しくデートするお仕事。</h1>
-    <p class="text-gray-600 mt-4">Zoomや公式LINEでいつでも相談可能！</p>
-  </div>
+        <div class="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <div class="bg-rose-50 border-l-4 border-rose-400 p-4 rounded-lg mb-12">
+                <p class="font-semibold text-lg text-rose-700">🎉 オープニングスタッフ 大募集中！</p>
+            </div>
+            <div class="mt-8 space-y-6">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    「普通のアルバイトじゃ、何か物足りない…」<br />
+                    「もっと自由に、楽しく稼ぎたい！」<br />
+                    そんなあなたにぴったりの働き方が、ここにあります。
+                </p>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    青春彼女は、お客様に”<strong class="text-emerald-500">デート体験</strong>”を提供するお仕事です。<br />
+                    話を聞くだけでもOK！まずはお気軽にご応募ください♪
+                </p>
+            </div>
 
-  <!-- Spir埋め込み -->
-  <div class="mt-12 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-2xl font-semibold text-gray-800">Zoomでいつでも代表に相談可能！</h2>
-    <p class="text-gray-600 mt-2">気になることはお気軽にご相談ください。</p>
-    <div class="mt-4">
-      <!-- Spirの埋め込みエリア -->
-      <div class="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-        <p class="text-gray-500">Spir埋め込みコードをここに挿入</p>
-      </div>
-    </div>
-  </div>
+            <div class="mt-16">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-klee">
+                    お仕事内容
+                </h2>
+                <div class="mt-6 flex flex-col md:flex-row gap-8 md:items-start">
+                    <div class="md:w-1/2">
+                        <ul class="list-disc list-inside text-base text-gray-600 space-y-4 leading-relaxed">
+                            <li>
+                                <strong class="text-emerald-500">LINEでのメッセージのやり取り</strong><br />
+                                お客様の趣味や興味に合わせた会話で、楽しい時間を演出！あなたのコミュニケーション能力を活かせます。
+                            </li>
+                            <li>
+                                <strong class="text-emerald-500">一緒にデートを楽しむ</strong><br />
+                                映画、ショッピング、遊園地... お客様の希望に合わせて、最高のデートプランを一緒に作り上げましょう！
+                            </li>
+                            <li>
+                                <strong class="text-emerald-500">あなたの個性を活かせる</strong><br />
+                                服装や髪型、メイクもあなたの自由！自分らしさを大切にしながら働けます。
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 w-full aspect-w-16 aspect-h-9">
+                        <img
+                            src={career_job.src}
+                            alt="Dummy Image"
+                            class="w-full h-full object-cover rounded-lg shadow-lg"
+                        />
+                    </div>
+                </div>
+            </div>
 
-  <!-- LINEの案内 -->
-  <div class="mt-12 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-2xl font-semibold text-gray-800">公式LINEでも回答可能！</h2>
-    <p class="text-gray-600 mt-2">QRコードをスキャンして、LINEで質問を送信してください。</p>
-    <div class="mt-4 flex items-center justify-center">
-      <img src="/dummy-qrcode.jpg" alt="公式LINE QRコード" class="w-40 h-40 rounded-lg shadow-md" />
-    </div>
-  </div>
+            <div class="mt-16">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 whitespace-nowrap font-klee">
+                    高収入 × 自分時間
+                </h2>
+                <div class="mt-6 flex flex-col md:flex-row gap-8 md:items-start">
+                    <div class="md:w-1/2">
+                        <div class="space-y-4">
+                            <p class="text-base text-gray-600 leading-relaxed">
+                                <strong class="text-emerald-500 text-lg">研修中から時給3000円</strong>をお約束！さらに、
+                                <strong class="text-emerald-500 text-lg">時給5000円以上</strong>も可能です。明確な昇給制度で、
+                                あなたの頑張りをしっかり評価します。
+                            </p>
+                            <p class="text-base text-gray-600 leading-relaxed">
+                                <strong class="text-emerald-500">オプション料金や延長料金は全てキャストにバック！</strong>頑張れば頑張るほど、収入アップに繋がります。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="mt-6 md:mt-0 bg-gray-100 p-4 rounded-lg border border-gray-300">
+                            <p class="text-base font-medium text-gray-900">💰 料金シミュレーション</p>
+                            <p class="mt-2 text-xs sm:text-base text-gray-600 leading-relaxed">
+                                【デート回数】 月20回 (1回平均4時間)<br>
+                                【延長回数】 月10回 (1回平均1時間)<br>
+                                【基本給】 時給3,000円<br>
+                                【給与】 (4時間 × 3,000円 + 1時間 × 3,000円) × 10回 + (4時間 × 3,000円) × 10回 = <strong class="text-emerald-500 text-base sm:text-lg">270,000円</strong>
+                            </p>
+                            <p class="mt-2 text-xs text-gray-500">※これはあくまで一例です。あなたの頑張り次第で、さらに高収入を目指せます！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <!-- FAQセクション -->
-  <div class="mt-12 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-2xl font-semibold text-gray-800">よくある質問</h2>
-    <ul class="mt-4 space-y-4">
-      {faqs.map((faq) => (
-        <li class="border-b pb-4">
-          <h3 class="font-semibold text-gray-800">{faq.question}</h3>
-          <p class="text-gray-600 mt-2">{faq.answer}</p>
-        </li>
-      ))}
-    </ul>
-  </div>
+            <div class="mt-16">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 font-klee">
+                    嬉しい3つのポイント
+                </h2>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-emerald-50 hover:bg-emerald-100 transition duration-300 p-6 rounded-lg border border-emerald-200 shadow-md"
+                    >
+                        <div class="flex items-center">
+                            <span class="text-3xl">⏰</span>
+                            <p class="ml-3 text-lg font-semibold text-gray-900">圧倒的な自由度</p>
+                        </div>
+                        <p class="mt-3 text-base text-gray-600 leading-relaxed">
+                            <strong class="text-emerald-600">好きな時間、好きな場所で働ける！</strong><br />
+                            学校や他の仕事との両立も、プライベートの充実も、あなたの思いのまま。
+                        </p>
+                    </div>
 
-  <!-- 募集要項セクション -->
-  <div class="mt-12 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-2xl font-semibold text-gray-800">募集要項</h2>
-    <ul class="mt-4 space-y-4">
-      {requirements.map((req) => (
-        <li class="border-b pb-4">
-          <h3 class="font-semibold text-gray-800">{req.title}</h3>
-          <p class="text-gray-600 mt-2">{req.content}</p>
-        </li>
-      ))}
-    </ul>
-  </div>
+                    <div
+                        class="bg-gray-50 hover:bg-gray-100 transition duration-300 p-6 rounded-lg border border-gray-200 shadow-md"
+                    >
+                        <div class="flex items-center">
+                            <span class="text-3xl">💃</span>
+                            <p class="ml-3 text-lg font-semibold text-gray-900">安心のサポート体制</p>
+                        </div>
+                        <p class="mt-3 text-base text-gray-600 leading-relaxed">
+                            <strong class="text-gray-700">ボディタッチ、セクハラは一切禁止！</strong><br />
+                            過度な接触がないから、安心して働けます。困ったことがあれば、運営スタッフがいつでも相談に乗ります。
+                        </p>
+                    </div>
 
-  <!-- 応募ボタン -->
-  <div class="mt-12 text-center">
-    <Button href="https://forms.gle/your-google-form-link" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600">
-      応募する
-    </Button>
-  </div>
-</section>
+                    <div
+                        class="bg-amber-50 hover:bg-amber-100 transition duration-300 p-6 rounded-lg border border-amber-200 shadow-md"
+                    >
+                        <div class="flex items-center">
+                            <span class="text-3xl">💰</span>
+                            <p class="ml-3 text-lg font-semibold text-gray-900">高い収入 & スキルアップ</p>
+                        </div>
+                        <p class="mt-3 text-base text-gray-600 leading-relaxed">
+                            未経験でも<strong class="text-amber-600">高収入</strong>。明確な昇給制度で頑張りを評価。<br />
+                            さらに、コミュニケーション能力や自分磨きのスキルも身につきます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h2 class="inline-block text-xl sm:text-2xl font-bold text-gray-900 border-b-4 border-emerald-400 pb-2 font-klee w-fit">
+                    募集要項
+                </h2>
+            </div>
+            
+            <div class="mt-12 overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <th
+                                scope="row"
+                                class="px-6 py-4 bg-gray-50 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                店名
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">
+                                青春彼女
+                            </td>
+                        </tr>
+                        <tr>
+                            <th
+                                scope="row"
+                                class="px-6 py-4 bg-gray-50 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                業務内容
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">
+                                お客様とのデート
+                            </td>
+                        </tr>
+                        <tr>
+                            <th
+                                scope="row"
+                                class="px-6 py-4 bg-gray-50 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                応募資格
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">
+                                18歳~39歳まで
+                            </td>
+                        </tr>
+                        <tr>
+                            <th
+                                scope="row"
+                                class="px-6 py-4 bg-gray-50 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                場所
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">
+                                東京、または都心に比較的近い関東圏
+                            </td>
+                        </tr>
+                        <tr>
+                            <th
+                                scope="row"
+                                class="px-6 py-4 bg-gray-50 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                面接場所
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">
+                                渋谷周辺の会議室にて行います。
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-16">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 font-klee">
+                    よくあるご質問(FAQ)
+                </h2>
+                <div class="mt-6 space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+                        <p class="text-base font-medium text-gray-900">Q. 学生・社会人でも働けますか？</p>
+                        <p class="mt-3 text-base text-gray-600 leading-relaxed">
+                            A. もちろん可能です。副業としてのご応募も歓迎しております。あなたのライフスタイルに合わせて、無理なく働けます。
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+                        <p class="text-base font-medium text-gray-900">Q. 交通費は出ますか？</p>
+                        <p class="mt-3 text-base text-gray-600 leading-relaxed">
+                            A. はい、全額支給いたします。無駄な出費を抑えて、効率的に稼げます。
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+                        <p class="text-base font-medium text-gray-900">Q. お客様と連絡先を交換する必要がありますか？</p>
+                        <p class="mt-3 text-base text-gray-600 leading-relaxed">
+                            A.
+                            お客様との連絡は、こちらで作成したLINE公式アカウントを通じて行うため、プライベートな連絡先を教える必要はありません。プライバシーも守られます。
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+                        <p class="text-base font-medium text-gray-900">Q. 未経験者でも応募可能ですか？</p>
+                        <p class="mt-3 text-base text-gray-600 leading-relaxed">
+                            A.
+                            もちろん可能です。デートだけでなくチャットやプロモーションの仕方まで全面的にサポートさせていただきますので、お気軽にご応募ください。未経験からでも、人気キャストを目指せます。
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+                        <p class="text-base font-medium text-gray-900">Q. お酒を飲む必要はありますか？</p>
+                        <p class="mt-3 text-base text-gray-600 leading-relaxed">
+                            A.
+                            お酒に関してはキャストにお任せしております。また、お客様からの飲酒の強要は禁止しておりますので、お酒が飲めなくても全く問題ありません。あなたの意思を尊重します。
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-6 bg-gray-100 p-4 rounded-lg border border-gray-300">
+                    <div class="flex items-center">
+                        <span class="text-2xl">💡</span>
+                        <p class="ml-3 text-base text-gray-600">
+                            さらに質問がある場合は、
+                            <a
+                                href="https://lin.ee/KL5dBzG"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-blue-500 hover:text-blue-700 hover:underline underline font-bold"
+                                >公式LINE</a
+                            >からお気軽にご質問ください！(最速で当日中に返信いたします)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 font-klee">
+                    応募フロー
+                </h2>
+                <ol class="mt-6 list-decimal list-inside text-base text-gray-600 space-y-4">
+                    <li>
+                        まずは、<strong class="text-emerald-500">以下の応募フォーム</strong>からお気軽にご応募ください。
+                    </li>
+                    <li>
+                        後日、運営から面接場所が記載されたメールが届きます。
+                    </li>
+                    <li>
+                        メールで日程を調整した後、対面で面接を行います。(後日合否が記載されたメールが届きます)
+                    </li>
+                    <li>
+                        合格した場合、プロフィールページを作成するための撮影やプロモーションを始めます。
+                    </li>
+                </ol>
+            </div>
+
+            <div class="mt-12">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScqnrWPzAfQwGVOuB6GBCVJ_dMCDjymFtPis5gMe-TDHxRUNA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                    <button class="bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 transition duration-300 text-white font-bold py-3 px-6 rounded-lg w-full text-xl">
+                        今すぐ応募して、新しい一歩を踏み出す！
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
 </Layout>
