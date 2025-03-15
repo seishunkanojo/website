@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from "../../layouts/Layout.astro";
 import { fetchArticles } from "../../lib/fetchArticle";
 
@@ -15,6 +16,8 @@ export async function getStaticPaths(){
 const {article} = Astro.props;
 console.log(article);
 
+// 画像の最適化のためにsrcプロパティを取得
+const coverImageSrc = article.coverImage.src;
 
 // 日付をフォーマットする関数
 function formatDate(dateString: string): string {
@@ -34,7 +37,14 @@ const formattedDate = formatDate(article["_sys"]["raw"]["publishedAt"]);
         <article>
             <!-- サムネイル画像 -->
             <div class="aspect-w-16 aspect-h-9 mb-12">
-                <img src={article.coverImage.src} alt="サムネイル画像" class="mx-auto object-cover">
+                <img 
+                    src={coverImageSrc} 
+                    alt="サムネイル画像" 
+                    class="mx-auto object-cover"
+                    width="700"
+                    height="394"
+                    loading="eager"
+                >
             </div>
 
             <div class="mx-4">
@@ -61,6 +71,7 @@ const formattedDate = formatDate(article["_sys"]["raw"]["publishedAt"]);
         max-width: 500px;
         max-height: 400px;
         height: auto;
+        loading: lazy;
     }
 
     .prose {

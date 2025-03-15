@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 export interface Props {
     date: string;
     title: string;
@@ -20,7 +22,14 @@ function formatDate(dateString: string): string {
 <div class={`bg-gray-50 border border-gray-200 rounded-lg shadow-sm transition-transform duration-300 transform hover:scale-105 hover:shadow-lg hover:border-blue-400 ${hiddenClass}`}>
     <!-- 画像 -->
     <div class="">
-        <img src={thumbnailUrl} alt={title} class="aspect-[16/9] object-cover rounded-t-lg">
+        <img 
+            src={thumbnailUrl} 
+            alt={title} 
+            class="aspect-[16/9] object-cover rounded-t-lg"
+            width="400"
+            height="225"
+            loading="lazy"
+        >
     </div>
     <!-- テキスト内容 -->
     <div class="p-3">

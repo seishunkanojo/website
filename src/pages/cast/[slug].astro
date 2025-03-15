@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from "../../layouts/Layout.astro";
 import Carousel from '../../components/blocks/Carousel.astro';
 import { fetchCasts } from "../../lib/fetchCasts";
@@ -16,6 +17,10 @@ export async function getStaticPaths(){
 const {cast} = Astro.props;
 const tagList = cast.tagList.map(item => item.tag);
 
+// 画像の最適化のためにsrcプロパティを取得
+const thumbnailSrc = cast.thumbnail.src;
+const photoLibrarySrcs = cast.photoLibrary.map(item => item.src);
+
 ---
 <Layout title={`${cast.fullName} | 青春彼女_都内No.1の彼女レンタルサービス`} description=`${cast.fullName}のプロフィール詳細ページです。趣味や特技、デートプランなど、${cast.fullName}との特別な時間をイメージできる情報が満載！東京で過ごす、あなただけの特別なデートを${cast.fullName}と。キャストとして働きたい方も募集中、${cast.fullName}と一緒に働きませんか？`>
     <div class="pt-14 md:pt-16 max-w-[1400px] mx-auto">
@@ -29,10 +34,10 @@ const tagList = cast.tagList.map(item => item.tag);
         </div>
 
         <!-- メイン画像 -->
-        <img id="main-image" src={cast.thumbnail.src} alt={`${cast.fullName}の写真`} class="rounded-xl mx-auto mb-8 shadow-lg sm:max-w-[500px] h-auto aspect-[1/1] object-cover sm:aspect-auto">
+        <img id="main-image" src={thumbnailSrc} alt={`${cast.fullName}の写真`} class="rounded-xl mx-auto mb-8 shadow-lg sm:max-w-[500px] h-auto aspect-[1/1] object-cover sm:aspect-auto">
 
         <!-- カルーセル -->
-        <Carousel images={cast.photoLibrary.map(item => item.src)} />
+        <Carousel images={photoLibrarySrcs} />
 
         <!-- タブ切り替え -->
         <div class="mt-8 mb-12">

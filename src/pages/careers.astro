@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from "../layouts/Layout.astro";
 import career_main from "../assets/img/career_main.jpg";
 import career_job from "../assets/img/career_job.jpg";
@@ -8,7 +9,15 @@ import career_job from "../assets/img/career_job.jpg";
     <section class="bg-white mt-16">
         <div class="w-full max-w-screen-lg mx-auto relative">
             <div class="aspect-w-16 aspect-h-9">
-                <img src={career_main.src} alt="スキマ時間に輝く、新しい私へ。" class="w-full h-full object-cover" />
+                <Image 
+                    src={career_main} 
+                    alt="スキマ時間に輝く、新しい私へ。" 
+                    width={1280}
+                    height={720}
+                    format="webp"
+                    quality={75}
+                    class="w-full h-full object-cover"
+                />
             </div>
             <div
                 class="absolute w-full z-10 flex items-center justify-start px-2 sm:px-8 md:px-16 lg:px-12 xl:px-20 2xl:px-16"
@@ -33,7 +42,7 @@ import career_job from "../assets/img/career_job.jpg";
                     そんなあなたにぴったりの働き方が、ここにあります。
                 </p>
                 <p class="text-lg text-gray-600 leading-relaxed">
-                    青春彼女は、お客様に”<strong class="text-emerald-500">デート体験</strong>”を提供するお仕事です。<br />
+                    青春彼女は、お客様に"デート体験"を提供するお仕事です。<br />
                     話を聞くだけでもOK！まずはお気軽にご応募ください♪
                 </p>
             </div>

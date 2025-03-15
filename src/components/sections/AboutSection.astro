@@ -1,8 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Heading from "../elements/Heading.astro";
 import sea_about from "../../assets/img/sea.jpg";
 import vertical_summer from "../../assets/img/vertical_summer.jpg";
 
+// 背景画像のURLを取得
+const seaBackgroundUrl = sea_about.src;
 ---
 
 <!-- <section class="py-10 px-4" style={`background-image: url(${sea.src}); background-size: cover; background-position: center;`}></section> -->
@@ -11,7 +14,7 @@ import vertical_summer from "../../assets/img/vertical_summer.jpg";
     <div class="py-4 px-5
                 md:py-8
                 lg:rounded-[200px] lg:max-w-[1400px] lg:mx-auto
-    " style={`background-image: url(${sea_about.src}); background-size: cover; background-position: center 75%; filter: brightness(1.06);`}>
+    " style={`background-image: url(${seaBackgroundUrl}); background-size: cover; background-position: center 75%; filter: brightness(1.06);`}>
         <Heading heading="About" subtitle="青春彼女について"></Heading>
         <div class="flex justify-center gap-6 items-center lg:gap-10 xl:gap-14 2xl:gap-20 -mt-6">
             <div class="font-klee">
@@ -19,10 +22,15 @@ import vertical_summer from "../../assets/img/vertical_summer.jpg";
                 <p class="mb-2 text-[15px] sm:taxt-base lg:mb-3 lg:text-lg xl:text-xl">女性がリードするので、何の準備もいりません。</p>
                 <p class="text-[15px] sm:text-base lg:mb-3 lg:text-lg xl:text-xl">ぜひ、お気軽にご利用ください。</p>
             </div>
-            <img class="aspect-[9/14] object-cover object-bottom w-40 rounded-3xl md:aspect-auto md:w-44 lg:w-48 xl:w-52 2xl:w-56" src={vertical_summer.src} alt="">
+            <Image 
+                src={vertical_summer} 
+                alt="夏の風景" 
+                width={400}
+                height={600}
+                format="webp"
+                quality={75}
+                class="aspect-[9/14] object-cover object-bottom w-40 rounded-3xl md:aspect-auto md:w-44 lg:w-48 xl:w-52 2xl:w-56"
+            />
         </div>
     </div>
-
-
-
 </section>

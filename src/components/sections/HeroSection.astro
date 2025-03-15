@@ -1,26 +1,35 @@
 ---
+import { Image } from 'astro:assets';
 import spring from "../../assets/img/spring.jpg";
 import summer from "../../assets/img/summer.jpeg";
 import summer_night from "../../assets/img/summer_night.jpg";
 import winter_night from "../../assets/img/winter_night.jpg";
 
 // 画像リストを作成
-const images = [summer.src, summer_night.src, spring.src, winter_night.src];
+const imageObjects = [summer, summer_night, spring, winter_night];
 ---
 
 <!-- スライドショーのラッパ -->
 <div class="relative w-full overflow-hidden max-h-screen mt-14 md:mt-0" style="aspect-ratio: 16 / 9;">
   <!-- スライドショー本体 -->
   <div id="slideshow" class="absolute inset-0 w-screen">
-    {images.map((src, index) => (
-      <img
-        src={src}
-        alt={`image-${index}`}
-        class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+    {imageObjects.map((img, index) => (
+      <div
+        class={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${
           index === 0 ? "opacity-100" : "opacity-0"
         }`}
-        style={`z-index: ${images.length - index};`}
-      />
+        style={`z-index: ${imageObjects.length - index};`}
+      >
+        <Image
+          src={img}
+          alt={`image-${index}`}
+          width={1920}
+          height={1080}
+          format="webp"
+          quality={70}
+          class="w-full h-full object-cover"
+        />
+      </div>
     ))}
   </div>
 
@@ -39,7 +48,7 @@ const images = [summer.src, summer_night.src, spring.src, winter_night.src];
 
   <!-- ドットインジケーター -->
   <div id="dots" class="absolute bottom-4 w-full flex justify-center gap-2 z-20">
-    {images.map((_, index) => (
+    {imageObjects.map((_, index) => (
       <div
         data-index={index}
         class="w-2 h-2 sm:w-4 sm:h-4 bg-white rounded-full cursor-pointer opacity-50 transition-opacity duration-300"
@@ -51,7 +60,7 @@ const images = [summer.src, summer_night.src, spring.src, winter_night.src];
 <script>
   // ここから JavaScript 部分（Astro ではフロントマター以降に記述可能）
   if (typeof window !== 'undefined') {
-    const images = document.querySelectorAll("#slideshow img");
+    const images = document.querySelectorAll("#slideshow > div");
     const dots = document.querySelectorAll("#dots div");
     let currentIndex = 0;
     let interval;
@@ -97,7 +106,7 @@ const images = [summer.src, summer_night.src, spring.src, winter_night.src];
 
 <style>
   /* 画像フェードアニメーション */
-  #slideshow img {
+  #slideshow > div {
     transition: opacity 1s ease-in-out;
   }
   /* ドットがアクティブな状態のスタイル */
