@@ -29,6 +29,7 @@ const imageObjects = [summer, summer_night, spring, winter_night];
           quality={70}
           class="w-full h-full object-cover"
         />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
       </div>
     ))}
   </div>
@@ -38,20 +39,35 @@ const imageObjects = [summer, summer_night, spring, winter_night];
     class="absolute w-full z-10 flex items-center justify-start px-4 sm:px-8 md:px-16 lg:px-20 xl:px-24 2xl:px-28"
     style="top: 50%;"
   >
-    <h1
-      class="text-black text-lg font-klee font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl
-            leading-tight transform -translate-y-1/2 bg-white/60 p-2 rounded-md"
-    >
-      <strong class="text-blue-600">青春</strong>を、もう一度
-    </h1>
+    <div class="transform -translate-y-1/2 animate-fade-in">
+      <h1
+        class="text-black text-lg font-klee font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl
+              leading-tight bg-white/70 backdrop-blur-sm p-4 rounded-xl shadow-soft"
+      >
+        <strong class="text-primary-600 relative">
+          青春
+          <span class="absolute bottom-0 left-0 w-full h-1 bg-primary-400 rounded-full"></span>
+        </strong>を、もう一度
+      </h1>
+      <div class="mt-4 md:mt-6 ml-2">
+        <a 
+          href="/cast" 
+          class="inline-block bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-3 rounded-full 
+                shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 
+                font-medium text-sm md:text-base"
+        >
+          彼女を探す <i class="fa-solid fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- ドットインジケーター -->
-  <div id="dots" class="absolute bottom-4 w-full flex justify-center gap-2 z-20">
+  <div id="dots" class="absolute bottom-8 w-full flex justify-center gap-3 z-20">
     {imageObjects.map((_, index) => (
       <div
         data-index={index}
-        class="w-2 h-2 sm:w-4 sm:h-4 bg-white rounded-full cursor-pointer opacity-50 transition-opacity duration-300"
+        class="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full cursor-pointer opacity-50 transition-all duration-300 shadow-md hover:scale-110"
       ></div>
     ))}
   </div>
@@ -84,7 +100,7 @@ const imageObjects = [summer, summer_night, spring, winter_night];
       interval = setInterval(() => {
         const nextIndex = (currentIndex + 1) % images.length;
         updateSlides(nextIndex);
-      }, 3000);
+      }, 5000);
     }
 
     function addDotClickHandlers() {
@@ -107,11 +123,13 @@ const imageObjects = [summer, summer_night, spring, winter_night];
 <style>
   /* 画像フェードアニメーション */
   #slideshow > div {
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1.5s ease-in-out;
   }
   /* ドットがアクティブな状態のスタイル */
   #dots div.opacity-100 {
     opacity: 1;
     background-color: #fff;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   }
 </style>

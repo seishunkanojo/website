@@ -5,7 +5,7 @@ const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="scroll-smooth">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,13 +21,13 @@ const { title, description } = Astro.props;
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
 
-	<!-- Font Awesome -->
-	<script src="https://kit.fontawesome.com/3c78d3fab5.js" crossorigin="anonymous"></script>
+	<!-- Font Awesome - 非同期読み込み -->
+	<script src="https://kit.fontawesome.com/3c78d3fab5.js" crossorigin="anonymous" defer></script>
 
-	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+	<!-- Swiperは個別のコンポーネントでimportするため、ここでは削除 -->
 </head>
-<body class="flex flex-col justify-between min-h-screen">
+<body class="flex flex-col justify-between min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800">
+	<div class="fixed inset-0 bg-gradient-radial from-primary-50/30 to-transparent pointer-events-none z-[-1]"></div>
 	<Header></Header>
 	<main class="flex-grow">
 		<slot />
@@ -35,3 +35,65 @@ const { title, description } = Astro.props;
 	<Footer></Footer>
 </body>
 </html>
+
+<style is:global>
+	:root {
+		--transition-standard: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		overflow-x: hidden;
+	}
+
+	/* モダンなスクロールバー */
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #f1f1f1;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #c4c4c4;
+		border-radius: 5px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #a0a0a0;
+	}
+
+	/* アニメーション */
+	.fade-in {
+		animation: fadeIn 0.5s ease-in-out;
+	}
+
+	.slide-up {
+		animation: slideUp 0.5s ease-out;
+	}
+
+	@keyframes fadeIn {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
+	}
+
+	@keyframes slideUp {
+		0% { transform: translateY(20px); opacity: 0; }
+		100% { transform: translateY(0); opacity: 1; }
+	}
+
+	/* フォーカス状態のスタイル */
+	*:focus-visible {
+		outline: 2px solid #0ea5e9;
+		outline-offset: 2px;
+	}
+
+	/* ボタンのホバーエフェクト */
+	button, a {
+		transition: all var(--transition-standard);
+	}
+</style>

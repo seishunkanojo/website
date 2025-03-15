@@ -16,4 +16,12 @@ export default defineConfig({
         quality: 80, // 画質の設定（0-100）
         densities: [1, 2], // レスポンシブ画像の密度
     },
+    // パフォーマンス最適化の設定
+    build: {
+        inlineStylesheets: "auto", // 小さなスタイルシートをインライン化
+    },
+    compressHTML: true, // HTMLを圧縮
+    experimental: {
+        optimizeHoistedScript: true, // スクリプトの最適化
+    },
 });

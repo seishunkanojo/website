@@ -3,22 +3,37 @@ import Layout from "../../layouts/Layout.astro";
 import Button from "../../components/elements/Button.astro";
 import { fetchArticles } from "../../lib/fetchArticle";
 import NewsCard from "../../components/blocks/NewsCard.astro";
+import Heading from "../../components/elements/Heading.astro";
 
-const { articles } =  await fetchArticles();
-console.log(articles);
+const { articles } = await fetchArticles();
+
 ---
 
 <Layout title="記事一覧 | 青春彼女_都内No.1の彼女レンタルサービス" description="当サービスからのお知らせ一覧ページです。東京でのレンタル彼女サービス「青春彼女」に関する最新情報や、キャンペーン情報、キャスト募集情報などを掲載しています。特別な時間をより楽しんでいただくための情報を、ぜひご覧ください。">
-    <div class="pt-20 px-4 md:pt-24 mb-16">
-        <h1 class="text-center font-klee text-3xl md:text-4xl mb-8 md:mb-12">記事一覧</h1>
+    <div class="pt-20 md:pt-24 container mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <!-- ヒーローセクション -->
+        <div class="mb-16 text-center">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-klee text-gray-800 mb-4">
+                <span class="text-primary-600">お知らせ</span>・最新情報
+            </h1>
+            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base lg:text-lg">
+                サービスに関する最新情報やお知らせ、キャンペーン情報などをご紹介します。
+            </p>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-400 mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <!-- ニュース一覧 -->
+        <Heading heading="News" subtitle="記事一覧"></Heading>
+        
         <div class="
-                grid grid-cols-2 gap-6 max-w-[1400px] mx-auto mb-8
-                sm:grid-cols-3
+                grid grid-cols-1 gap-6 max-w-[1400px] mx-auto mb-16
+                sm:grid-cols-2
+                md:grid-cols-3
                 lg:grid-cols-4
-                xl:grid-cols-6 xl:gap-8
+                xl:gap-8
             ">
-            {articles.map((article) => (
-                <a href={`/news/${article.slug}`}>
+            {articles.map((article, index) => (
+                <a href={`/news/${article.slug}`} class="animate-fade-in" style={`animation-delay: ${index * 0.1}s`}>
                     <NewsCard
                         date={article["_sys"]["raw"]["publishedAt"]}
                         title={article.title}
@@ -27,8 +42,34 @@ console.log(articles);
                 </a>
             ))}
         </div>
-    </div>
-    <div class="flex justify-center mb-12">
-        <a href="/"><Button>トップページへ</Button></a>
+
+        <!-- 問い合わせバナー -->
+        <div class="bg-gradient-to-r from-accent-50 to-primary-50 p-8 rounded-2xl shadow-soft mb-16">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-primary-700 mb-2 font-klee">ご質問やご不明点はありませんか？</h2>
+                    <p class="text-gray-600 mb-4">サービスについてのご質問や、ご不明点などがございましたら、お気軽にお問い合わせください。</p>
+                </div>
+                <a 
+                    href="/contact" 
+                    class="inline-block bg-gradient-to-r from-accent-500 to-primary-500 text-white px-6 py-3 rounded-full 
+                        shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 
+                        font-medium text-sm md:text-base"
+                >
+                    お問い合わせする <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex justify-center">
+            <a 
+                href="/" 
+                class="inline-block bg-white text-primary-600 border border-primary-300 px-6 py-3 rounded-full 
+                    shadow-sm hover:shadow-md hover:bg-primary-50 transform hover:-translate-y-0.5 transition-all duration-300 
+                    font-medium text-sm md:text-base"
+            >
+                <i class="fa-solid fa-home mr-2"></i> トップページへ戻る
+            </a>
+        </div>
     </div>
 </Layout>

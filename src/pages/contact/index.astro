@@ -3,11 +3,60 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="お問い合わせ | 青春彼女_都内No.1の彼女レンタルサービス">
-    <div class="pt-14 md:pt-16 max-w-[700px] mx-auto mt-12">
-        <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLScYXXtSQLKzEAELFJEkxbLwfGdnDEcH-l8hJ_IS6-ki-ScIiQ/viewform?embedded=true" 
-            style="width: 100%; height: 800px; border: none;"
-            class="mx-auto">
-            読み込んでいます…
-        </iframe>
+    <div class="pt-20 md:pt-24 mb-32 container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- ヒーローセクション -->
+        <div class="mb-12 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold font-klee text-gray-800 mb-4">
+                お問い合わせ
+            </h1>
+            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
+                サービスに関するご質問やご不明点がございましたら、下記フォームよりお気軽にお問い合わせください。
+            </p>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-400 mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <!-- お問い合わせフォーム -->
+        <div class="max-w-[800px] mx-auto bg-white rounded-xl shadow-soft p-6 md:p-8 overflow-hidden">
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLScYXXtSQLKzEAELFJEkxbLwfGdnDEcH-l8hJ_IS6-ki-ScIiQ/viewform?embedded=true" 
+                style="width: 100%; height: 800px; border: none;"
+                class="mx-auto">
+                読み込んでいます…
+            </iframe>
+        </div>
+
+        <!-- 代替連絡先情報 -->
+        <div class="max-w-[800px] mx-auto mt-12 text-center">
+            <h2 class="text-xl md:text-2xl font-bold font-klee text-gray-800 mb-4">
+                その他の連絡方法
+            </h2>
+            <p class="text-gray-600 mb-6">
+                フォームでのお問い合わせが難しい場合は、以下の方法でもご連絡いただけます。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                <div class="bg-white rounded-xl shadow-soft p-6 hover:shadow-md transition-all duration-300">
+                    <i class="fa-solid fa-envelope text-primary-500 text-2xl mb-3"></i>
+                    <h3 class="font-bold text-gray-800 mb-2">メールでのお問い合わせ</h3>
+                    <p class="text-gray-600 text-sm">info@seishunkanojo.com</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-soft p-6 hover:shadow-md transition-all duration-300">
+                    <i class="fa-solid fa-phone text-primary-500 text-2xl mb-3"></i>
+                    <h3 class="font-bold text-gray-800 mb-2">お電話でのお問い合わせ</h3>
+                    <p class="text-gray-600 text-sm">03-XXXX-XXXX<br>(平日 10:00〜18:00)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 戻るボタン -->
+        <div class="mt-12 text-center">
+            <a 
+                href="/" 
+                class="inline-block bg-white text-primary-600 border border-primary-300 px-6 py-3 rounded-full 
+                    shadow-sm hover:shadow-md hover:bg-primary-50 transform hover:-translate-y-0.5 transition-all duration-300 
+                    font-medium text-sm md:text-base"
+            >
+                <i class="fa-solid fa-home mr-2"></i> トップページへ戻る
+            </a>
+        </div>
+    </div>
 </Layout>

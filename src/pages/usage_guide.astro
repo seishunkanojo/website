@@ -4,204 +4,351 @@ import Button from "../components/elements/Button.astro"
 ---
 
 <Layout title="ご利用料金 | 青春彼女_都内No.1の彼女レンタルサービス" description="当サービスのご利用料金をご案内します。東京で過ごす特別な時間のために、明確でわかりやすい料金体系をご用意。安心の料金設定で、あなたの理想のデートをサポートします。キャスト募集も行なっておりますので、お気軽にご応募ください！">
-    <section class="container mx-auto p-4 mt-16 md:p-8">
-        <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
-            ご利用方法
-        </h1>
+    <div class="pt-20 md:pt-24 mb-32 container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- ヒーローセクション -->
+        <div class="mb-16 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold font-klee text-gray-800 mb-4 relative inline-block">
+                ご利用方法
+                <span class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary-400 to-accent-400 rounded-full"></span>
+            </h1>
+            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base mt-6">
+                青春彼女のサービスをご利用いただくための流れと料金体系をご案内します。
+            </p>
+        </div>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-700 mb-4">ご利用の流れ</h2>
+        <!-- ご利用の流れ -->
+        <section class="mb-24 max-w-5xl mx-auto">
+            <div class="flex items-center mb-10">
+                <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-map-signs text-white text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 font-klee">
+                    ご利用の流れ
+                </h2>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center">
-                    <i class="fas fa-person-dress fa-3x text-red-400 mb-4"></i>
-                    <p class="text-lg font-bold text-gray-700 mb-2">
-                        <a href="/cast" class="text-red-400 underline">彼女一覧</a>から探す
+                <div class="bg-white p-8 rounded-2xl shadow-elegant flex flex-col items-center transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-primary-200 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-400 to-accent-400 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary-50 to-accent-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-person-dress text-2xl text-primary-600"></i>
+                    </div>
+                    <p class="text-xl font-bold text-gray-800 mb-3">
+                        <span class="text-primary-600">STEP 1:</span> 彼女を探す
                     </p>
-                    <p class="text-center">
-                        お気に入りの彼女を見つけてください👀
-                    </p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center">
-                    <i class="fab fa-line fa-3x text-green-500 mb-4"></i>
-                    <p class="text-lg font-bold text-gray-700 mb-2">
-                        LINEでデートプランを立てる
-                    </p>
-                    <p class="text-center">
-                        2人で一緒に素敵なプランを作りましょう！
+                    <p class="text-center text-gray-600">
+                        <a href="/cast" class="text-primary-600 hover:text-primary-700 font-medium">彼女一覧</a>からお気に入りの彼女を見つけてください👀
                     </p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center">
-                    <i class="fas fa-heart fa-3x text-red-500 mb-4"></i>
-                    <p class="text-lg font-bold text-gray-700 mb-2">
-                        デートを楽しむ
+                <div class="bg-white p-8 rounded-2xl shadow-elegant flex flex-col items-center transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-primary-200 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-400 to-accent-400 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary-50 to-accent-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-line text-2xl text-primary-600"></i>
+                    </div>
+                    <p class="text-xl font-bold text-gray-800 mb-3">
+                        <span class="text-primary-600">STEP 2:</span> プランを立てる
                     </p>
-                    <p class="text-center">
+                    <p class="text-center text-gray-600">
+                        LINEで彼女と一緒に素敵なデートプランを作りましょう！
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-elegant flex flex-col items-center transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-primary-200 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-400 to-accent-400 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary-50 to-accent-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-heart text-2xl text-primary-600"></i>
+                    </div>
+                    <p class="text-xl font-bold text-gray-800 mb-3">
+                        <span class="text-primary-600">STEP 3:</span> デートを楽しむ
+                    </p>
+                    <p class="text-center text-gray-600">
                         素敵な時間をお過ごしください♪
                     </p>
                 </div>
             </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-700 mb-4">利用料金</h2>
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                <p class="text-lg text-center mb-6">
-                    <span class="text-gray-700 font-bold text-xl">ご利用料金 = 基本料金 + 出張費</span>
-                    <span class="text-gray-600"> (+ 延長費)</span>
-                </p>
-
-                <div class="mb-8">
-                    <h3 class="text-xl font-bold text-gray-600 mb-2">基本料金</h3>
-                    <p class="mb-2">
-                        基本料金は各キャストのプロフィールページに記載してあります。
+        <!-- 利用料金 -->
+        <section class="mb-24 max-w-5xl mx-auto">
+            <div class="flex items-center mb-10">
+                <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-yen-sign text-white text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 font-klee">
+                    利用料金
+                </h2>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-elegant border border-gray-100">
+                <div class="text-center mb-10 bg-gradient-to-r from-primary-50 to-accent-50 p-6 rounded-xl">
+                    <p class="text-xl font-bold text-gray-800 mb-2">
+                        <span class="text-primary-600">ご利用料金</span> = 基本料金 + 出張費 <span class="text-gray-500">(+ 延長費)</span>
                     </p>
-                    <p class="bg-yellow-50 border border-yellow-200 p-2 rounded-md">
-                        ※デートは最低<span class="text-red-500 font-bold">2時間</span>利用からでお願いいたします。
+                    <p class="text-gray-600">
+                        シンプルで分かりやすい料金体系でご利用いただけます
                     </p>
-                    <img
-                        src="https://seishunkanojo.assets.newt.so/v1/6683c4c9-f453-4f5e-ac95-239b29aec117/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%882025-01-12214642.png"
-                        alt="スクリーンショット"
-                        class="mt-4 w-full md:w-2/3 lg:w-1/2 mx-auto"
-                    />
                 </div>
 
-                <div class="mb-8">
-                    <h3 class="text-xl font-bold text-gray-600 mb-2">出張費</h3>
-                    <p class="mb-2">
-                        集合場所と解散場所のうち、<span class="text-red-500 font-bold">渋谷駅から遠い方</span>を「出張先」とし、以下の表に基づいて計算します。
-                    </p>
-                    <table class="table-auto w-full border-collapse border border-gray-300">
-                        <thead>
-                            <tr class="bg-gray-200">
-                                <th class="border border-gray-300 px-4 py-2">出張先</th>
-                                <th class="border border-gray-300 px-4 py-2">料金</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-white">
-                                <td class="border border-gray-300 px-4 py-2">東京23区内</td>
-                                <td class="border border-gray-300 px-4 py-2">2000円</td>
-                            </tr>
-                            <tr class="bg-gray-50">
-                                <td class="border border-gray-300 px-4 py-2">
-                                    東京23区外かつ、渋谷駅から片道1時間未満の場所（舞浜駅、横浜市等含む）
-                                </td>
-                                <td class="border border-gray-300 px-4 py-2">3000円</td>
-                            </tr>
-                            <tr class="bg-white">
-                                <td class="border border-gray-300 px-4 py-2">
-                                    渋谷駅から片道1時間以上、1時間30分未満の場所
-                                </td>
-                                <td class="border border-gray-300 px-4 py-2">5000円</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white rounded-xl shadow-soft border border-gray-100 p-6 hover:border-primary-200 transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-money-bill-wave text-primary-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-700">基本料金</h3>
+                        </div>
+                        <p class="mb-3 text-gray-600">
+                            基本料金は各キャストのプロフィールページに記載してあります。
+                        </p>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md">
+                            <p class="flex items-center">
+                                <i class="fas fa-exclamation-circle text-yellow-500 mr-2"></i>
+                                デートは最低<span class="text-red-500 font-bold ml-1">2時間</span>利用からでお願いいたします。
+                            </p>
+                        </div>
+                        <div class="mt-4 overflow-hidden rounded-lg">
+                            <img
+                                src="https://seishunkanojo.assets.newt.so/v1/6683c4c9-f453-4f5e-ac95-239b29aec117/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%882025-01-12214642.png"
+                                alt="スクリーンショット"
+                                class="w-full transition-transform duration-500 hover:scale-105"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-soft border border-gray-100 p-6 hover:border-primary-200 transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-map-marker-alt text-primary-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-700">出張費</h3>
+                        </div>
+                        <p class="mb-3 text-gray-600">
+                            集合場所と解散場所のうち、<span class="text-red-500 font-bold">渋谷駅から遠い方</span>を「出張先」とし、以下の表に基づいて計算します。
+                        </p>
+                        <div class="overflow-hidden rounded-xl border border-gray-200">
+                            <table class="table-auto w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-gradient-to-r from-primary-50 to-accent-50">
+                                        <th class="px-4 py-3 text-left text-gray-700">出張先</th>
+                                        <th class="px-4 py-3 text-right text-gray-700">料金</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-gray-200">
+                                        <td class="px-4 py-3 text-gray-600">東京23区内</td>
+                                        <td class="px-4 py-3 text-right font-medium text-primary-600">2,000円</td>
+                                    </tr>
+                                    <tr class="border-t border-gray-200 bg-gray-50">
+                                        <td class="px-4 py-3 text-gray-600">
+                                            東京23区外かつ、渋谷駅から片道1時間未満の場所
+                                        </td>
+                                        <td class="px-4 py-3 text-right font-medium text-primary-600">3,000円</td>
+                                    </tr>
+                                    <tr class="border-t border-gray-200">
+                                        <td class="px-4 py-3 text-gray-600">
+                                            渋谷駅から片道1時間以上、1時間30分未満の場所
+                                        </td>
+                                        <td class="px-4 py-3 text-right font-medium text-primary-600">5,000円</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <div>
-                    <h3 class="text-xl font-bold text-gray-600 mb-2">延長費</h3>
-                    <p>
+                <div class="bg-white rounded-xl shadow-soft border border-gray-100 p-6 hover:border-primary-200 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-clock text-primary-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-700">延長費</h3>
+                    </div>
+                    <p class="text-gray-600">
                         キャストとの同意のうえで、デート当日に<span class="text-red-500 font-bold">1時間単位</span>でデートを延長することができます。
                     </p>
-                    <p class="bg-yellow-50 border border-yellow-200 p-2 rounded-md mt-2">
-                        ただし、延長費用は<span class="text-red-500 font-bold">基本料金+1000円</span>となることをご了承ください。
-                    </p>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mt-3">
+                        <p class="flex items-center">
+                            <i class="fas fa-exclamation-circle text-yellow-500 mr-2"></i>
+                            延長費用は<span class="text-red-500 font-bold ml-1">基本料金+1000円</span>となることをご了承ください。
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-700 mb-4">料金シミュレーション</h2>
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                <!-- <h3 class="text-lg font-bold text-gray-600 mb-4">料金計算ツール</h3> -->
-    
-                <div class="mb-4">
-                    <label for="base-rate" class="block mb-2">基本料金（円/時間）:</label>
-                    <input
-                        type="number"
-                        id="base-rate"
-                        value="6000"
-                        min="0"
-                        class="border border-gray-300 px-3 py-2 rounded w-full"
-                    />
-                    <div id="base-rate-error" class="text-red-500 text-sm mt-1"></div>
+        <section class="mb-24 max-w-5xl mx-auto">
+            <div class="flex items-center mb-10">
+                <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-calculator text-white text-xl"></i>
                 </div>
-    
-                <div class="mb-4">
-                    <label for="hours" class="block mb-2">利用時間（時間）:</label>
-                    <input
-                        type="number"
-                        id="hours"
-                        value="2"
-                        min="2"
-                        class="border border-gray-300 px-3 py-2 rounded w-full"
-                    />
-                    <div id="hours-error" class="text-red-500 text-sm mt-1"></div>
-                </div>
-    
-                <div class="mb-4">
-                    <label for="extra-hours" class="block mb-2">延長時間（時間）:</label>
-                    <input
-                        type="number"
-                        id="extra-hours"
-                        value="0"
-                        min="0"
-                        class="border border-gray-300 px-3 py-2 rounded w-full"
-                    />
-                    <div id="extra-hours-error" class="text-red-500 text-sm mt-1"></div>
-                </div>
-    
-                <div class="mb-4">
-                    <label for="destination" class="block mb-2">出張先:</label>
-                    <select id="destination" class="border border-gray-300 px-3 py-2 rounded w-full">
-                        <option value="tokyo-23">東京23区内</option>
-                        <option value="tokyo-suburbs">東京23区外（渋谷から1時間未満）</option>
-                        <option value="outside-tokyo">渋谷から1時間以上1時間30分未満</option>
-                    </select>
-                </div>
-    
-                <button
-                    id="calculate-button"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
-                >
-                    計算する
-                </button>
-    
-                <div class="mt-6">
-                    <p class="text-lg">
-                        合計料金: <span id="total-price" class="text-xl font-bold text-red-500">0円</span>
-                    </p>
+                <h2 class="text-2xl font-bold text-gray-800 font-klee">
+                    料金シミュレーション
+                </h2>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-elegant border border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="mb-6">
+                            <label for="base-rate" class="block mb-2 font-medium text-gray-700">基本料金（円/時間）:</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                    <i class="fas fa-yen-sign"></i>
+                                </span>
+                                <input
+                                    type="number"
+                                    id="base-rate"
+                                    value="6000"
+                                    min="0"
+                                    class="border border-gray-300 pl-10 px-4 py-3 rounded-lg w-full focus:ring-2 focus:ring-primary-300 focus:border-primary-300 transition-all duration-200"
+                                />
+                            </div>
+                            <div id="base-rate-error" class="text-red-500 text-sm mt-1"></div>
+                        </div>
+            
+                        <div class="mb-6">
+                            <label for="hours" class="block mb-2 font-medium text-gray-700">利用時間（時間）:</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </span>
+                                <input
+                                    type="number"
+                                    id="hours"
+                                    value="2"
+                                    min="2"
+                                    class="border border-gray-300 pl-10 px-4 py-3 rounded-lg w-full focus:ring-2 focus:ring-primary-300 focus:border-primary-300 transition-all duration-200"
+                                />
+                            </div>
+                            <div id="hours-error" class="text-red-500 text-sm mt-1"></div>
+                        </div>
+            
+                        <div class="mb-6">
+                            <label for="extra-hours" class="block mb-2 font-medium text-gray-700">延長時間（時間）:</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                    <i class="fas fa-clock"></i>
+                                </span>
+                                <input
+                                    type="number"
+                                    id="extra-hours"
+                                    value="0"
+                                    min="0"
+                                    class="border border-gray-300 pl-10 px-4 py-3 rounded-lg w-full focus:ring-2 focus:ring-primary-300 focus:border-primary-300 transition-all duration-200"
+                                />
+                            </div>
+                            <div id="extra-hours-error" class="text-red-500 text-sm mt-1"></div>
+                        </div>
+            
+                        <div class="mb-6">
+                            <label for="destination" class="block mb-2 font-medium text-gray-700">出張先:</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                                <select id="destination" class="border border-gray-300 pl-10 px-4 py-3 rounded-lg w-full appearance-none bg-white focus:ring-2 focus:ring-primary-300 focus:border-primary-300 transition-all duration-200">
+                                    <option value="tokyo-23">東京23区内</option>
+                                    <option value="tokyo-suburbs">東京23区外（渋谷から1時間未満）</option>
+                                    <option value="outside-tokyo">渋谷から1時間以上1時間30分未満</option>
+                                </select>
+                                <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col justify-center">
+                        <div class="bg-gradient-to-r from-primary-50 to-accent-50 p-6 rounded-xl mb-6">
+                            <p class="text-center text-gray-700 mb-2">予想合計金額</p>
+                            <p class="text-center">
+                                <span id="total-price" class="text-3xl font-bold text-primary-600">0円</span>
+                            </p>
+                        </div>
+                        
+                        <button
+                            id="calculate-button"
+                            class="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white font-bold py-4 px-6 rounded-xl w-full shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
+                        >
+                            <i class="fas fa-calculator mr-2"></i> 料金を計算する
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-700 mb-4">注意事項</h2>
-            <ul class="list-disc list-inside space-y-4">
-                <li class="bg-gray-50 p-4 rounded-lg shadow">
-                    料金は<span class="text-red-500 font-bold">前払い制</span>となっております。
-                </li>
-                <li class="bg-gray-50 p-4 rounded-lg shadow">
-                    デート中の飲食代、施設利用料等はお客様のご負担となります。
-                </li>
-                <li class="bg-gray-50 p-4 rounded-lg shadow">
-                    キャストへの過度な接触、暴言、その他迷惑行為は禁止です。
-                </li>
-                <li class="bg-gray-50 p-4 rounded-lg shadow">
-                    キャストのプライバシーに関わる質問はご遠慮ください。
-                </li>
-                <li class="bg-gray-50 p-4 rounded-lg shadow">
-                    予約のキャンセルについては、キャンセルポリシーをご確認ください。
-                </li>
-                <li class="bg-gray-50 p-4 rounded-lg shadow">
-                    その他、利用規約に同意の上、サービスをご利用ください。
-                </li>
-            </ul>
+        <section class="mb-24 max-w-5xl mx-auto">
+            <div class="flex items-center mb-10">
+                <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-exclamation-circle text-white text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 font-klee">
+                    注意事項
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-xl shadow-elegant border border-gray-100 hover:border-primary-200 transition-all duration-300 flex">
+                    <div class="mr-4 text-primary-500 text-xl">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-700">料金は<span class="text-red-500 font-bold">前払い制</span>となっております。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-elegant border border-gray-100 hover:border-primary-200 transition-all duration-300 flex">
+                    <div class="mr-4 text-primary-500 text-xl">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-700">デート中の飲食代、施設利用料等はお客様のご負担となります。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-elegant border border-gray-100 hover:border-primary-200 transition-all duration-300 flex">
+                    <div class="mr-4 text-primary-500 text-xl">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-700">キャストへの過度な接触、暴言、その他迷惑行為は禁止です。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-elegant border border-gray-100 hover:border-primary-200 transition-all duration-300 flex">
+                    <div class="mr-4 text-primary-500 text-xl">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-700">キャストのプライバシーに関わる質問はご遠慮ください。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-elegant border border-gray-100 hover:border-primary-200 transition-all duration-300 flex">
+                    <div class="mr-4 text-primary-500 text-xl">
+                        <i class="fas fa-calendar-times"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-700">予約のキャンセルについては、キャンセルポリシーをご確認ください。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-elegant border border-gray-100 hover:border-primary-200 transition-all duration-300 flex">
+                    <div class="mr-4 text-primary-500 text-xl">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-700">その他、利用規約に同意の上、サービスをご利用ください。</p>
+                    </div>
+                </div>
+            </div>
         </section>
-        <div class="flex justify-center mb-12">
-            <a href="/"><Button>トップページへ</Button></a>
+        
+        <div class="mt-16 text-center">
+            <a 
+                href="/" 
+                class="inline-block bg-white text-primary-600 border border-primary-300 px-8 py-4 rounded-full 
+                    shadow-md hover:shadow-lg hover:bg-primary-50 transform hover:-translate-y-1 transition-all duration-300 
+                    font-medium"
+            >
+                <i class="fa-solid fa-home mr-2"></i> トップページへ戻る
+            </a>
         </div>
-    </section>
+    </div>
     <script>
         function calculatePrice() {
             // 各要素を取得
@@ -293,5 +440,14 @@ import Button from "../components/elements/Button.astro"
             calcButton.addEventListener("click", calculatePrice);
         }
     </script>
-
 </Layout>
+
+<style>
+    .shadow-elegant {
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    }
+    
+    .shadow-soft {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+    }
+</style>

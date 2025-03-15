@@ -4,14 +4,36 @@ import Layout from "../../layouts/Layout.astro";
 import Carousel from '../../components/blocks/Carousel.astro';
 import { fetchCasts } from "../../lib/fetchCasts";
 
+// キャストの型定義
+interface Cast {
+    slug: string;
+    fullName: string;
+    tagList: { tag: string }[];
+    thumbnail: { src: string };
+    photoLibrary: { src: string }[];
+    age: number;
+    height: number;
+    price: number;
+    hobby: string;
+    favoriteFood: string;
+    personality: string;
+    questions: { question: string; answer: string }[];
+    youtube?: { html: string };
+}
+
 export async function getStaticPaths(){
     const {casts} = await fetchCasts();
-    return casts.map((cast) => {
+    return casts.map((cast: Cast) => {
         return{
             params: {slug: cast.slug},
             props: {cast: cast}
         }
     })
+}
+
+// Astroの型定義
+interface Props {
+    cast: Cast;
 }
 
 const {cast} = Astro.props;
@@ -23,164 +45,296 @@ const photoLibrarySrcs = cast.photoLibrary.map(item => item.src);
 
 ---
 <Layout title={`${cast.fullName} | 青春彼女_都内No.1の彼女レンタルサービス`} description=`${cast.fullName}のプロフィール詳細ページです。趣味や特技、デートプランなど、${cast.fullName}との特別な時間をイメージできる情報が満載！東京で過ごす、あなただけの特別なデートを${cast.fullName}と。キャストとして働きたい方も募集中、${cast.fullName}と一緒に働きませんか？`>
-    <div class="pt-14 md:pt-16 max-w-[1400px] mx-auto">
+    <div class="pt-20 md:pt-24 mb-32 container mx-auto px-4 sm:px-6 lg:px-8">
         <!-- キャスト名 -->
-        <div class="text-center mt-2 mb-6 md:mb-10">
-            <h1 class="text-[28px] text-center font-klee font-bold tracking-wider relative inline-block md:text-3xl">
+        <div class="text-center mb-8 md:mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold font-klee text-gray-800 mb-4">
                 {cast.fullName}
-                <span 
-                    class="block h-[2px] bg-gradient-to-l from-yellow-300 via-green-400 to-blue-400 mt-2 mx-auto w-full rounded-full"></span>
             </h1>
+            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
+                {cast.fullName}とのデートをお楽しみください
+            </p>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-400 mx-auto mt-6 rounded-full"></div>
         </div>
 
-        <!-- メイン画像 -->
-        <img id="main-image" src={thumbnailSrc} alt={`${cast.fullName}の写真`} class="rounded-xl mx-auto mb-8 shadow-lg sm:max-w-[500px] h-auto aspect-[1/1] object-cover sm:aspect-auto">
-
-        <!-- カルーセル -->
-        <Carousel images={photoLibrarySrcs} />
-
-        <!-- タブ切り替え -->
-        <div class="mt-8 mb-12">
-            <div id="tabs" class="flex justify-center gap-4 mb-6">
-                <!-- すべて同じクラスに統一 -->
-                <button
-                    data-tab="profile"
-                    class="text-[14px] px-4 tab-button sm:text-base sm:px-6 py-2 font-medium rounded border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 hover:border-gray-400"
-                >
-                    プロフィール
-                </button>
-                <button
-                    data-tab="questions"
-                    class="text-[14px] px-4 tab-button sm:text-base sm:px-6 py-2 font-medium rounded border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 hover:border-gray-400"
-                >
-                    質問コーナー
-                </button>
-                <button
-                    data-tab="video"
-                    class="text-[14px] px-4 tab-button sm:text-base sm:px-6 py-2 font-medium rounded border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 hover:border-gray-400"
-                >
-                    動画
-                </button>
-            </div>
-
-            <!-- タブコンテンツ -->
-            <div id="tab-content">
-                <div data-content="profile" class="tab-content">
-                    <div class="bg-white shadow-md p-6 rounded-lg">
-                        <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">プロフィール</h2>
-                        <ul class="text-gray-600 space-y-6"> <!-- 上部に薄い線を引く -->
-                            <li class="pt-3 border-b border-gray-300"> <!-- 各項目の下に薄い線を引く -->
-                                <strong class="text-blue-500 text-lg">料金:</strong> 
-                                <span class="text-gray-800 font-semibold">{cast.price}円/時間</span>
-                            </li>
-                            <li class="pt-3 border-b border-gray-300">
-                                <strong class="text-blue-500 text-lg">年齢:</strong> 
-                                <span class="text-gray-800 font-semibold">{cast.age}歳</span>
-                            </li>
-                            <li class="pt-3 border-b border-gray-300">
-                                <strong class="text-blue-500 text-lg">身長:</strong> 
-                                <span class="text-gray-800 font-semibold">{cast.height}cm</span>
-                            </li>
-                            <li class="pt-3 border-b border-gray-300">
-                                <strong class="text-blue-500 text-lg">タグ:</strong> 
-                                <span class="text-gray-800 font-semibold">{tagList.map(tag => `#${tag}`).join(' ')}</span>
-                            </li>
-                            <li class="pt-3 border-b border-gray-300">
-                                <strong class="text-blue-500 text-lg">趣味:</strong> 
-                                <span class="text-gray-800 font-semibold">{cast.hobby}</span>
-                            </li>
-                            <li class="pt-3 border-b border-gray-300">
-                                <strong class="text-blue-500 text-lg">好きな食べ物:</strong> 
-                                <span class="text-gray-800 font-semibold">{cast.favoriteFood}</span>
-                            </li>
-                            <li class="pt-3">
-                                <strong class="text-blue-500 text-lg">性格:</strong> 
-                                <span class="text-gray-800 font-semibold">{cast.personality}</span>
-                            </li>
-                        </ul>
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <!-- 左側：メイン画像とLINE -->
+                <div class="lg:w-2/5">
+                    <div class="sticky top-24">
+                        <div class="overflow-hidden rounded-xl shadow-elegant">
+                            <Image 
+                                id="main-image" 
+                                src={thumbnailSrc} 
+                                alt={`${cast.fullName}の写真`} 
+                                width={600}
+                                height={800}
+                                format="webp"
+                                quality={85}
+                                class="w-full h-auto aspect-[3/4] object-cover transform hover:scale-105 transition-transform duration-700"
+                            />
+                        </div>
                         
+                        <!-- タグリスト -->
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            {tagList.map((tag) => (
+                                <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                        
+                        <!-- 基本情報 -->
+                        <div class="mt-6 bg-white rounded-xl shadow-soft p-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i class="fa-solid fa-circle-info text-primary-500 mr-2"></i> 基本情報
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">年齢</span>
+                                    <span class="font-medium text-gray-800">{cast.age}歳</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">身長</span>
+                                    <span class="font-medium text-gray-800">{cast.height}cm</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">料金</span>
+                                    <span class="font-medium text-primary-700">{cast.price}円/時間</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- LINE友達追加 -->
+                        <div class="mt-6 bg-white rounded-xl shadow-soft p-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i class="fab fa-line text-[#06C755] mr-2"></i> LINE友達追加
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-4">
+                                {cast.fullName}とLINEで直接連絡を取り、デートの予定を決めることができます。
+                            </p>
+                            <div class="flex flex-col items-center">
+                                <!-- QRコードの例（実際のQRコードに置き換えてください） -->
+                                <div class="bg-white p-2 rounded-lg shadow-md mb-4 border border-gray-200">
+                                    <img 
+                                        src="https://qr-official.line.me/sid/L/396ixpyg.png" 
+                                        alt="LINE QRコード" 
+                                        class="w-40 h-40"
+                                    />
+                                </div>
+                                <a 
+                                    href="https://lin.ee/396ixpyg" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    class="flex items-center justify-center w-full bg-[#06C755] hover:bg-[#05B54A] text-white font-bold py-3 px-6 rounded-xl text-center shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
+                                >
+                                    <i class="fab fa-line mr-2"></i> 友だち追加
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div data-content="questions" class="tab-content hidden">
-                    <div class="bg-white shadow-md p-6 rounded-lg">
-                        <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">質問コーナー</h2>
-                        <ul class="space-y-6">
-                            {cast.questions.map((item) => (
-                                <li class="border-b pb-2">
-                                    <p class="font-bold text-blue-700">Q. {item.question}</p>
-                                    <p class="text-gray-800 mt-4">A. {item.answer}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
+                <!-- 右側：コンテンツ -->
+                <div class="lg:w-3/5">
+                    <!-- カルーセル -->
+                    <Carousel images={photoLibrarySrcs} />
+                    
+                    <!-- タブ切り替え -->
+                    <div class="mt-8">
+                        <div id="tabs" class="flex justify-center gap-3 mb-6 flex-wrap">
+                            <button
+                                data-tab="profile"
+                                class="tab-button px-5 py-2.5 font-medium rounded-full border border-primary-200 bg-white text-primary-700 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300"
+                            >
+                                <i class="fa-solid fa-user mr-2"></i>プロフィール
+                            </button>
+                            <button
+                                data-tab="questions"
+                                class="tab-button px-5 py-2.5 font-medium rounded-full border border-primary-200 bg-white text-primary-700 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300"
+                            >
+                                <i class="fa-solid fa-question mr-2"></i>質問コーナー
+                            </button>
+                            <button
+                                data-tab="video"
+                                class="tab-button px-5 py-2.5 font-medium rounded-full border border-primary-200 bg-white text-primary-700 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300"
+                            >
+                                <i class="fa-solid fa-video mr-2"></i>動画
+                            </button>
+                            <button
+                                data-tab="schedule"
+                                class="tab-button px-5 py-2.5 font-medium rounded-full border border-primary-200 bg-white text-primary-700 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300"
+                            >
+                                <i class="fa-solid fa-calendar-days mr-2"></i>スケジュール
+                            </button>
+                        </div>
+                        
+                        <!-- タブコンテンツ -->
+                        <div id="tab-contents" class="bg-white rounded-xl shadow-soft p-6 md:p-8">
+                            <div data-content="profile" class="tab-content">
+                                <div class="bg-white shadow-md p-6 rounded-lg">
+                                    <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">プロフィール</h2>
+                                    <ul class="text-gray-600 space-y-6">
+                                        <li class="pt-3 border-b border-gray-300">
+                                            <strong class="text-blue-500 text-lg">料金:</strong> 
+                                            <span class="text-gray-800 font-semibold">{cast.price}円/時間</span>
+                                        </li>
+                                        <li class="pt-3 border-b border-gray-300">
+                                            <strong class="text-blue-500 text-lg">年齢:</strong> 
+                                            <span class="text-gray-800 font-semibold">{cast.age}歳</span>
+                                        </li>
+                                        <li class="pt-3 border-b border-gray-300">
+                                            <strong class="text-blue-500 text-lg">身長:</strong> 
+                                            <span class="text-gray-800 font-semibold">{cast.height}cm</span>
+                                        </li>
+                                        <li class="pt-3 border-b border-gray-300">
+                                            <strong class="text-blue-500 text-lg">タグ:</strong> 
+                                            <span class="text-gray-800 font-semibold">{tagList.map(tag => `#${tag}`).join(' ')}</span>
+                                        </li>
+                                        <li class="pt-3 border-b border-gray-300">
+                                            <strong class="text-blue-500 text-lg">趣味:</strong> 
+                                            <span class="text-gray-800 font-semibold">{cast.hobby}</span>
+                                        </li>
+                                        <li class="pt-3 border-b border-gray-300">
+                                            <strong class="text-blue-500 text-lg">好きな食べ物:</strong> 
+                                            <span class="text-gray-800 font-semibold">{cast.favoriteFood}</span>
+                                        </li>
+                                        <li class="pt-3">
+                                            <strong class="text-blue-500 text-lg">性格:</strong> 
+                                            <span class="text-gray-800 font-semibold">{cast.personality}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div data-content="questions" class="tab-content hidden">
+                                <div class="bg-white shadow-md p-6 rounded-lg">
+                                    <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">質問コーナー</h2>
+                                    <ul class="space-y-6">
+                                        {cast.questions.map((item) => (
+                                            <li class="border-b pb-2">
+                                                <p class="font-bold text-blue-700">Q. {item.question}</p>
+                                                <p class="text-gray-800 mt-4">A. {item.answer}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
 
-                <div data-content="video" class="tab-content hidden">
-                    <div class="bg-white shadow-md p-6 rounded-lg">
-                        <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">動画</h2>
-                        {cast.youtube?.html ? (
-                            <div id="youtube-container" set:html={cast.youtube.html}></div>
-                        ) : (
-                            <p class="text-gray-500 text-center">現在、動画はありません。</p>
-                        )}
+                            <div data-content="video" class="tab-content hidden">
+                                <div class="bg-white shadow-md p-6 rounded-lg">
+                                    <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">動画</h2>
+                                    {cast.youtube?.html ? (
+                                        <div id="youtube-container" set:html={cast.youtube.html}></div>
+                                    ) : (
+                                        <p class="text-gray-500 text-center">現在、動画はありません。</p>
+                                    )}
+                                </div>
+                            </div>
+                            
+                            <div data-content="schedule" class="tab-content hidden">
+                                <div class="bg-white shadow-md p-6 rounded-lg">
+                                    <h2 class="text-lg font-bold text-gray-700 mb-6 text-center">スケジュール</h2>
+                                    <p class="text-gray-600 mb-6 text-center">
+                                        {cast.fullName}の空き状況をご確認いただけます。<br>
+                                        ご希望の日時がありましたら、LINEでお問い合わせください。
+                                    </p>
+                                    <div class="calendar-container overflow-x-auto">
+                                        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=UTC&showPrint=0&title=%E3%83%86%E3%82%B9%E3%83%88%E6%8A%95%E7%A8%BF&mode=MONTH&src=MjU4NGEyM2ZhODY3NTdjZjRhZWJjYWQwMWEwYjUyYjc0MDdmZmFkNmY4ZWJhZmU4MmFiYzM0YWQ5Njk4NmNkZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23B39DDB&color=%230B8043" style="border:solid 1px #777" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</Layout>
 
-    <!-- タブ切り替えスクリプト -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const tabs = document.querySelectorAll(".tab-button");
-            const contents = document.querySelectorAll(".tab-content");
+<style>
+    .shadow-elegant {
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .shadow-soft {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .tab-button.active {
+        background-color: var(--color-primary-600);
+        color: var(--color-primary-50);
+        border-color: var(--color-primary-600);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* タブレットサイズ以下でカレンダーをレスポンシブに */
+    @media (max-width: 768px) {
+        .calendar-container iframe {
+            height: 350px;
+        }
+    }
+</style>
 
-            // 初期表示設定：最初のタブのみアクティブ
-            tabs.forEach((tab, index) => {
-                if (index === 0) {
-                    tab.classList.remove("bg-gray-100", "text-gray-700");
-                    tab.classList.add("bg-blue-400", "text-white", "hover:bg-blue-500");
-                    contents[index].classList.remove("hidden");
-                } else {
-                    contents[index].classList.add("hidden");
-                }
-            });
-
-            // タブクリック時の処理
-            tabs.forEach((tab) => {
-                tab.addEventListener("click", () => {
-                    const target = tab.getAttribute("data-tab");
-
-                    // 全タブを非アクティブに
-                    tabs.forEach((btn, btnIndex) => {
-                        btn.classList.remove("bg-blue-400", "text-white", "hover:bg-blue-500");
-                        btn.classList.add("bg-gray-100", "text-gray-700", "hover:bg-gray-200");
-                        contents[btnIndex].classList.add("hidden");
-                    });
-
-                    // クリックされたタブをアクティブに
-                    tab.classList.remove("bg-gray-100", "text-gray-700", "hover:bg-gray-200");
-                    tab.classList.add("bg-blue-400", "text-white", "hover:bg-blue-500");
-
-                    // 対応するコンテンツ表示
-                    const activeContent = document.querySelector(`[data-content="${target}"]`);
-                    if (activeContent) {
-                        activeContent.classList.remove("hidden");
-                    }
-                });
-            });
-
-            // iframeとそのコンテナにクラスを追加
-            const iframeContainer = document.querySelector("#youtube-container div");
-            if (iframeContainer) {
-                iframeContainer.classList.add("mx-auto", "rounded-lg");
-            }
-
-            const iframe = iframeContainer.querySelector("iframe");
-            if (iframe) {
-                iframe.classList.add("mx-auto", "rounded-lg");
+<script>
+    // タブ切り替え機能
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    // 初期表示
+    document.querySelector('[data-tab="profile"]')?.classList.add('active');
+    const profileContent = document.querySelector('[data-content="profile"]');
+    if (profileContent) {
+        profileContent.classList.remove('hidden');
+    }
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // アクティブなタブをリセット
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.add('hidden'));
+            
+            // クリックされたタブをアクティブに
+            button.classList.add('active');
+            const tabId = button.getAttribute('data-tab');
+            const activeContent = document.querySelector(`[data-content="${tabId}"]`);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+                adjustContentHeight();
             }
         });
-    </script>
-</Layout>
+    });
+    
+    // 左右のブロックの高さを調整する関数
+    function adjustContentHeight() {
+        // 左側のコンテンツの高さを取得
+        const leftColumn = document.querySelector('.lg\\:w-2\\/5 .sticky') as HTMLElement | null;
+        const rightColumn = document.querySelector('.lg\\:w-3\\/5') as HTMLElement | null;
+        const activeTabContent = document.querySelector('.tab-content:not(.hidden)') as HTMLElement | null;
+        
+        if (leftColumn && rightColumn && activeTabContent && window.innerWidth >= 1024) {
+            const leftHeight = leftColumn.offsetHeight;
+            const carouselHeight = (document.querySelector('.lg\\:w-3\\/5 > div:first-child') as HTMLElement)?.offsetHeight || 0;
+            const tabsHeight = (document.querySelector('#tabs') as HTMLElement)?.offsetHeight || 0;
+            const tabContentPadding = 48; // p-6 md:p-8 の合計パディング
+            
+            // スケジュールタブの場合は高さを調整
+            if (document.querySelector('[data-tab="schedule"]')?.classList.contains('active')) {
+                const scheduleContent = document.querySelector('[data-content="schedule"] .calendar-container iframe') as HTMLIFrameElement | null;
+                if (scheduleContent) {
+                    const availableHeight = leftHeight - carouselHeight - tabsHeight - tabContentPadding - 100;
+                    if (availableHeight > 400) {
+                        scheduleContent.style.height = `${availableHeight}px`;
+                    }
+                }
+            }
+        }
+    }
+    
+    // ページ読み込み時と画面サイズ変更時に高さを調整
+    window.addEventListener('load', adjustContentHeight);
+    window.addEventListener('resize', adjustContentHeight);
+    
+    // 初期表示時にも高さを調整
+    setTimeout(adjustContentHeight, 100);
+</script>

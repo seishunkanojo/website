@@ -5,13 +5,22 @@ import HeaderButton from '../elements/HeaderButton.astro';
 ---
 
 <header class="
-        p-3 fixed z-20 bg-white/90 w-full flex items-center justify-between h-14
-        md:p-4 md:h-16
+        p-3 fixed z-20 w-full flex items-center justify-between h-16
+        backdrop-blur-md bg-white/80 border-b border-gray-100 shadow-sm
+        transition-all duration-300 ease-in-out
+        md:p-4 md:h-18
         lg:p-5
-
 ">
-    <div>
-        <a href="/"><Image class="w-[90px] sm:w-24 md:w-28 lg:w-32" src={logo} alt='logo' /></a>
+    <div class="transition-transform duration-300 hover:scale-105">
+        <a href="/" class="block">
+            <Image 
+                class="w-[90px] sm:w-24 md:w-28 lg:w-32" 
+                src={logo} 
+                alt='logo'
+                width={128}
+                height={40}
+            />
+        </a>
     </div>
     <div>
         <nav>
@@ -21,14 +30,40 @@ import HeaderButton from '../elements/HeaderButton.astro';
                 md:text-lg
                 lg:gap-7
             ">
-                <a href="/usage_guide" class="hover:text-gray-700"><li>利用方法</li></a>
-                <a href="/news" class="hover:text-gray-700"><li>お知らせ</li></a>
-                <a href="/careers" class="hidden md:block md:hover:text-gray-700"><li>求人募集</li></a>
-                <a href="/contact" class="hidden md:block md:hover:text-gray-700"><li>お問い合わせ</li></a>
+                <a href="/usage_guide" class="relative overflow-hidden group">
+                    <li class="transition-colors duration-300 hover:text-primary-600">利用方法</li>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="/news" class="relative overflow-hidden group">
+                    <li class="transition-colors duration-300 hover:text-primary-600">お知らせ</li>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="/careers" class="hidden md:block relative overflow-hidden group">
+                    <li class="transition-colors duration-300 hover:text-primary-600">求人募集</li>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="/contact" class="hidden md:block relative overflow-hidden group">
+                    <li class="transition-colors duration-300 hover:text-primary-600">お問い合わせ</li>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
                 <a href="/cast"><HeaderButton>彼女一覧</HeaderButton></a>
             </ul>
         </nav>
     </div>
 </header>
+
+<script>
+    // スクロールに応じてヘッダーの外観を変更
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('shadow-md', 'bg-white/95');
+            header.classList.remove('bg-white/80', 'shadow-sm');
+        } else {
+            header.classList.remove('shadow-md', 'bg-white/95');
+            header.classList.add('bg-white/80', 'shadow-sm');
+        }
+    });
+</script>
 
 

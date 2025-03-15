@@ -13,11 +13,34 @@ const legal_notice = response.items[0];
 
 ---
 
-<Layout title="利用規約 | 青春彼女_都内No.1の彼女レンタルサービス">
-    <div class="pt-20 md:pt-24 mb-32 max-w-[700px] mx-auto">
-        <article>
+<Layout title="特定商取引法に基づく表記 | 青春彼女_都内No.1の彼女レンタルサービス">
+    <div class="pt-20 md:pt-24 mb-32 container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- ヒーローセクション -->
+        <div class="mb-12 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold font-klee text-gray-800 mb-4">
+                特定商取引法に基づく表記
+            </h1>
+            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
+                特定商取引法に基づく表記です。ご確認ください。
+            </p>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-400 mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <article class="max-w-[800px] mx-auto bg-white rounded-xl shadow-soft p-6 md:p-8 lg:p-10">
             <!-- HTMLコンテンツ -->
-            <div class="prose md:prose-lg" set:html={legal_notice["content"]}></div>
+            <div class="prose md:prose-lg mx-auto" set:html={legal_notice["content"]}></div>
+            
+            <!-- 戻るボタン -->
+            <div class="mt-12 text-center">
+                <a 
+                    href="/" 
+                    class="inline-block bg-white text-primary-600 border border-primary-300 px-6 py-3 rounded-full 
+                        shadow-sm hover:shadow-md hover:bg-primary-50 transform hover:-translate-y-0.5 transition-all duration-300 
+                        font-medium text-sm md:text-base"
+                >
+                    <i class="fa-solid fa-home mr-2"></i> トップページへ戻る
+                </a>
+            </div>
         </article>
     </div>
 </Layout>
@@ -31,10 +54,70 @@ const legal_notice = response.items[0];
         max-width: 500px;
         max-height: 400px;
         height: auto;
+        margin: 2rem auto;
     }
 
     .prose {
         color: #333;
         line-height: 1.6;
+    }
+    
+    .prose h1, .prose h2, .prose h3, .prose h4 {
+        color: #0369a1;
+        font-family: 'Klee One', cursive;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .prose h2 {
+        border-bottom: 2px solid #e0f2fe;
+        padding-bottom: 0.5rem;
+    }
+    
+    .prose p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .prose ul, .prose ol {
+        margin-left: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .prose li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .prose a {
+        color: #0ea5e9;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .prose a:hover {
+        color: #0284c7;
+        text-decoration: underline;
+    }
+    
+    /* テーブルスタイル */
+    .prose table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+    }
+    
+    .prose th, .prose td {
+        border: 1px solid #e5e7eb;
+        padding: 0.75rem 1rem;
+    }
+    
+    .prose th {
+        background-color: #f0f9ff;
+        font-weight: 600;
+        text-align: left;
+    }
+    
+    .prose tr:nth-child(even) {
+        background-color: #f9fafb;
     }
 </style>

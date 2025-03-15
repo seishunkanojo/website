@@ -1,42 +1,78 @@
 ---
+import { Image } from 'astro:assets';
 const { images } = Astro.props;
 
 //このコンポーネントを使った場所にmain-imageというIDを持つimg要素があれば、そのsrcを更新する。
 ---
 
 <!-- Slider main container -->
-<div class="swiper">
+<div class="swiper rounded-xl overflow-hidden shadow-elegant my-8">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
         {images.map((image) => (
-            <div class="swiper-slide">
-                <img 
+            <div class="swiper-slide p-1">
+                <Image 
                     src={image} 
                     alt=""
-                    width="300"
-                    height="300"
-                    loading="lazy"
-                >
+                    width={300}
+                    height={300}
+                    format="webp"
+                    quality={70}
+                    class="rounded-lg shadow-soft transition-all duration-300 hover:shadow-md"
+                />
             </div>
         ))}
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
     <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev after:text-primary-600 after:text-2xl"></div>
+    <div class="swiper-button-next after:text-primary-600 after:text-2xl"></div>
 </div>
 
 <style>
     .swiper-slide > img {
-        transition: opacity 1.0s ease;
+        transition: all 0.4s ease;
     }
 
     .swiper-slide:not(.swiper-slide-fully-visible) > img {
         pointer-events: none;
         opacity: 0.3;
-        transition: opacity 1.0s ease;
+        filter: blur(1px);
+        transform: scale(0.9);
+        transition: all 0.4s ease;
+    }
+    
+    .swiper-button-prev, .swiper-button-next {
+        background-color: rgba(255, 255, 255, 0.8);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .swiper-button-prev:hover, .swiper-button-next:hover {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .swiper-button-prev::after, .swiper-button-next::after {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .swiper-pagination-bullet {
+        background-color: #0ea5e9;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+    
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+        background-color: #0284c7;
+        transform: scale(1.2);
     }
 </style>
 
@@ -45,16 +81,16 @@ const { images } = Astro.props;
     import "swiper/css/bundle";
 
     const swiper = new Swiper(".swiper", {
-        slidesPerView: 5,
+        slidesPerView: 3,
         breakpoints: {
             640: {
-                slidesPerView: 5,
+                slidesPerView: 4,
             },
             1024: {
-                slidesPerView: 6,
+                slidesPerView: 5,
             },
             1280: {
-                slidesPerView: 7,
+                slidesPerView: 6,
             },
         },
         watchSlidesProgress: true,
@@ -63,7 +99,7 @@ const { images } = Astro.props;
         centeredSlides: true,
         loop: true,
         loopAdditionalSlides: 1,
-        speed: 1500,
+        speed: 800,
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,
@@ -77,6 +113,14 @@ const { images } = Astro.props;
             clickable: true,
         },
         slideToClickedSlide: true,
+        effect: "coverflow",
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: false,
+        },
         on: {
             slideChangeTransitionStart: () => {
                 const activeSlide = document.querySelector(".swiper-slide-active img");
@@ -88,6 +132,12 @@ const { images } = Astro.props;
                     // メイン画像を更新
                     mainImage.setAttribute("src", src);
                     mainImage.setAttribute("alt", alt);
+                    
+                    // アニメーション効果
+                    mainImage.classList.add('scale-105', 'opacity-90');
+                    setTimeout(() => {
+                        mainImage.classList.remove('scale-105', 'opacity-90');
+                    }, 300);
                 }
             },
         },
