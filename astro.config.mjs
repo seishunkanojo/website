@@ -21,7 +21,4 @@ export default defineConfig({
         inlineStylesheets: "auto", // 小さなスタイルシートをインライン化
     },
     compressHTML: true, // HTMLを圧縮
-    experimental: {
-        optimizeHoistedScript: true, // スクリプトの最適化
-    },
 });
